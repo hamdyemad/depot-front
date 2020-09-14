@@ -32,7 +32,7 @@
               <div class="cart-info" #cartInfo>
                 <ng-container>
                   <div class="carts animated fadeIn" #cartInfoChildren *ngFor="let cart of carts">
-                    <img [src]="'http://localhost:3000/' + cart.image" [alt]="cart.name">
+                    <img [src]="url +'/' + cart.image" [alt]="cart.name">
                     <div class="cart-details">
                       <h3>{{ cart.name }}</h3>
                       <p>{{ cart.amount }} x {{ cart.priceAfterDiscount | currency }}</p>

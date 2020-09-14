@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="order" *ngFor="let invoice of invoices;index as i">
       <div class="pannel-heading">
-        <h2><i class="fas fa-info"></i><span>Order Details (#{{invoice?.sequence_value}})</span></h2>
+        <h2><i class="fas fa-info"></i><span>Order Details (#{{invoice?.seq}})</span></h2>
       </div>
       <div class="pannel-body">
         <table class="table order-info">
@@ -63,7 +63,7 @@
           <tbody>
             <tr *ngFor="let product of invoice.orders">
               <td>
-                <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                <img [src]="url +'/' + product.image" [alt]="product.name">
                 <span>{{ product.name }}</span>
               </td>
               <td>{{ product.category }}</td>

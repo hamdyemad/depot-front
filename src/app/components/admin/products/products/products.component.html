@@ -67,7 +67,7 @@
           <tbody>
             <tr *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}; index as i;">
               <th>{{ product.seq}}</th>
-              <th><img [src]="'http://localhost:3000/' + product.image" [alt]="product.name"></th>
+              <th><img [src]="url +'/' + product.image" [alt]="product.name"></th>
               <td>{{ product.name }}</td>
               <td>{{ product.priceAfterDiscount | currency }}</td>
               <td>{{ product.addedDate | date }}</td>

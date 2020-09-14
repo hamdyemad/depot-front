@@ -7,6 +7,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ViewChildren, QueryList, After
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Carts } from '../../../models/carts.model';
+import { environment as env } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('cartInfo') cartInfo: ElementRef;
   minWeb = matchMedia('(min-width: 991px)');
   maxMobile = matchMedia('(max-width: 991px)');
-
+  url = env.DB_URL;
   totalPrice: number;
   carts: Carts[];
   cart$: Subscription;

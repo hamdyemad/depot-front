@@ -4,6 +4,7 @@ import { Orders } from './../../../../models/orders.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { OrderService } from '../../../../services/order_service/order.service';
+import { environment as env } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-order-details',
@@ -12,6 +13,7 @@ import { OrderService } from '../../../../services/order_service/order.service';
 })
 export class OrderDetailsComponent implements OnInit {
 
+  url = env.DB_URL;
   historyArray: [];
   historyForm: FormGroup;
   totalPrice: number;

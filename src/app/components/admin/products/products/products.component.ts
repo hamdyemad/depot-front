@@ -7,6 +7,7 @@ import { ProductsOfOrders } from '../../../../models/productsOfOrders';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Products } from '../../../../models/products.model';
 import { HttpResponse, HttpEventType, HttpEvent } from '@angular/common/http';
+import { environment as env } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ import { HttpResponse, HttpEventType, HttpEvent } from '@angular/common/http';
 export class ProductsComponent implements OnInit, OnDestroy {
 
 
+  url = env.DB_URL;
   $(ele) {
     return document.querySelector(ele);
   }

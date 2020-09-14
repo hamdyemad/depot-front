@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsOfOrders } from '../../../../models/productsOfOrders';
 import { Products } from '../../../../models/products.model';
+import { environment as env } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-shipping',
@@ -12,6 +13,7 @@ import { Products } from '../../../../models/products.model';
 })
 export class ShippingComponent implements OnInit {
 
+  url = env.DB_URL;
   invoices: Orders[]
   productOrders: [];
   constructor(private route: ActivatedRoute, private _order: OrderService) { }

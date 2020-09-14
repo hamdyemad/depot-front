@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Carts } from '../../../models/carts.model';
 import { Router } from '@angular/router';
+import { environment as env } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-order',
@@ -16,6 +17,7 @@ export class OrderComponent implements OnInit {
   carts: Carts[];
   totalPrice: number;
   orderForm: FormGroup;
+  url = env.DB_URL;
   constructor(
     private fb: FormBuilder, private _cart: CartService,
     private _order: OrderService,

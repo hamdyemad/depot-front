@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsOfOrders } from '../../../../models/productsOfOrders';
 import { Orders } from '../../../../models/orders.model';
+import { environment as env } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-invoice',
@@ -11,6 +12,7 @@ import { Orders } from '../../../../models/orders.model';
 })
 export class InvoiceComponent implements OnInit {
 
+  url = env.DB_URL;
   totalPrice: number;
   order: Orders;
   productOrders: ProductsOfOrders[];

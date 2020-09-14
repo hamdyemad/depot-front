@@ -2,6 +2,7 @@ import { Orders } from './../../../models/orders.model';
 import { AuthService } from './../../../services/auth_service/auth.service';
 import { OrderService } from './../../../services/order_service/order.service';
 import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { environment as env } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-my-orders',
@@ -11,6 +12,7 @@ import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 export class MyOrdersComponent implements OnInit {
 
   @ViewChildren('track') track: QueryList<any>;
+  url = env.DB_URL;
   orders: Orders;
   tracks;
   status: string[];

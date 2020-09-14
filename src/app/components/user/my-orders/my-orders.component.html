@@ -57,7 +57,7 @@
         <ul>
           <li *ngFor="let order of track.orders">
             <div class="image">
-              <img [src]="'http://localhost:3000/' + order.image">
+              <img [src]="url +'/' + order.image">
             </div>
             <div class="content">
               <h2>{{ order.name }}</h2>

@@ -2,6 +2,7 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Carts } from './../../../models/carts.model';
 import { CartService } from './../../../services/cart_service/cart.service';
+import { environment as env } from '../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,6 +14,7 @@ export class CartComponent implements OnInit {
 
   totalPrice: number;
   carts: Carts[];
+  url = env.DB_URL;
   constructor(private _cart: CartService, private toastr: ToastrService) { }
 
   $(ele) {

@@ -63,7 +63,7 @@
           <tbody>
             <tr *ngFor="let product of productOrders">
               <td>
-                <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                <img [src]="url +'/' + product.image" [alt]="product.name">
                 <span>{{ product.name }}</span>
               </td>
               <td>{{ product.category }}</td>

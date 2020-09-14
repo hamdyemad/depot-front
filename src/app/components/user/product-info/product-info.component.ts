@@ -6,6 +6,7 @@ import { ProductsService } from './../../../services/products_service/products.s
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Products } from '../../../models/products.model';
+import { environment as env } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-info',
@@ -14,6 +15,7 @@ import { Products } from '../../../models/products.model';
 })
 export class ProductInfoComponent implements OnInit {
 
+  url = env.DB_URL;
   amount: number = 1;
   reviews = 3;
   reviewsArr = [];
