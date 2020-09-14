@@ -1,0 +1,6 @@
+@import "../../../../../assets/files/placeholders";
+.invoice {
+  // Start Pannel of order
+  @extend %orderTable;
+  // End Pannel of order
+}

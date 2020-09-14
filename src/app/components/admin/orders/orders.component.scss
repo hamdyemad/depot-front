@@ -1,0 +1,12 @@
+@import "../../../../assets/files/placeholders";
+.orders {
+  @extend %tableWithFilter;
+}
+::ng-deep {
+  pagination-template {
+    @extend %pagination;
+  }
+  .shimmers {
+    @extend %shimmers;
+  }
+}

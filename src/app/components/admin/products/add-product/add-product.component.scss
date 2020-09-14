@@ -1,0 +1,30 @@
+@import "../../../../../assets/files/placeholders";
+.add-products {
+  padding: 40px 0;
+  width: 50%;
+  margin: auto;
+  .img-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    img {
+      width: 100px;
+      height: 100px;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+  @media(max-width: 767px) {
+    width: 100%;
+    margin: unset;
+  }
+  .err {
+    font-size: 13px;
+  }
+  button {
+    @extend %mainButton;
+    &[disabled] {
+      opacity: 0.8;
+    }
+  }
+}

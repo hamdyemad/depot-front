@@ -1,0 +1,84 @@
+<div class="add-products">
+  <div class="container-fluid">
+    <h2 class="text-center">Add Product</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Product Name</label>
+        <input class="form-control" [ngClass]="{
+          'is-valid': !name().invalid && name().dirty,
+          'is-invalid': name().invalid && name().dirty
+        }" type="text" formControlName="name">
+        <div class="valid-feedback err">Looks good!</div>
+        <div class="invalid-feedback err">
+          product name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Product Description</label>
+        <input class="form-control" [ngClass]="{
+          'is-valid': !description().invalid && description().dirty,
+          'is-invalid': description().invalid && description().dirty
+        }" type="text" formControlName="description">
+        <div class="valid-feedback err">Looks good!</div>
+        <div class="invalid-feedback err">
+          description is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Product Category</label>
+        <select class="custom-select" [ngClass]="{
+          'is-valid': !category().invalid && category().dirty,
+          'is-invalid': category().invalid && category().dirty
+        }" formControlName="category">
+          <option value=""></option>
+          <option value="arts">arts</option>
+          <option value="chairs">chairs</option>
+          <option value="chandeliers">chandeliers</option>
+          <option value="cups">cups</option>
+          <option value="heaters">heaters</option>
+          <option value="tables">tables</option>
+          <option value="watches">watches</option>
+        </select>
+        <div class="valid-feedback err">Looks good!</div>
+        <div class="invalid-feedback err">
+          category is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Product Price</label>
+        <input class="form-control" [ngClass]="{
+          'is-valid': !price().invalid && price().dirty,
+          'is-invalid': price().invalid && price().dirty
+        }" type="number" formControlName="price">
+        <div class="valid-feedback err">Looks good!</div>
+        <div class="invalid-feedback err">
+          price is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="image">Product Image</label>
+        <div class="img-info animated">
+          <img #img hidden>
+        </div>
+        <div class="custom-file animated fadeIn">
+          <button type="button" class="w-100" (click)="file.click()" #button>Choose Your Photo..</button>
+          <input type="file" #file hidden (change)="change(button, file, img)" accept="image/*" formControlName="image">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="discount">Discount</label>
+        <input class="form-control" [ngClass]="{
+          'is-valid': !discount().invalid && discount().dirty,
+          'is-invalid': discount().invalid && discount().dirty
+        }" type="number" formControlName="discount" max="100">
+        <div class="valid-feedback err">Looks good!</div>
+        <div class="invalid-feedback err">
+          your discount should at least 100%;
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <button [disabled]="addForm.invalid">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>

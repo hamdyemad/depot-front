@@ -1,0 +1,49 @@
+<div class="admin-nav">
+  <div class="logo">
+    <h2 class="text-capitalize">depot</h2>
+  </div>
+  <ul class="links">
+    <li>
+      <a routerLink="/admin" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/orders" routerLinkActive="activeLink">
+        <i class="fas fa-shopping-cart"></i>
+        <span>orders</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/change-status" routerLinkActive="activeLink">
+        <i class="fas fa-exchange-alt"></i>
+        <span>change status</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/order/export" routerLinkActive="activeLink">
+        <i class="fas fa-file-excel"></i>
+        <span>Export Orders to excel</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/products" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">
+        <i class="fas fa-box"></i>
+        <span>products</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/products/add" routerLinkActive="activeLink">
+        <i class="fas fa-plus-square"></i>
+        <span>add products</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/users" routerLinkActive="activeLink">
+        <i class="fas fa-users"></i>
+        <span>users</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,117 @@
+<div class="products">
+  <div class="all-info">
+    <div class="filters">
+      <div class="filter" (click)="toggleForm(form)">
+        <div class="heading">
+          <div class="container-fluid">
+            <div class="filter-heading">
+              <i class="fas fa-filter"></i>
+              <h3>Filter</h3>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <form (click)="stopProp($event)" #form [formGroup]="filterForm" (ngSubmit)="filter()">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="orderid">order id</label>
+                  <input type="text" class="form-control" placeholder="Order ID" formControlName="id">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="product name">product name</label>
+                  <input type="text" class="form-control" placeholder="Product Name" formControlName="name">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="category">category</label>
+                  <select class="custom-select" formControlName="category">
+                    <option value=""></option>
+                    <option [value]="category" *ngFor="let category of categorys">{{ category }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group group-icon">
+                  <label for="date">date</label>
+                  <input type="date" class="form-control" formControlName="addedDate">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-8 align-self-end">
+                <div class="form-group">
+                  <button><i class="fas fa-filter"></i>
+                    <span>Filter</span></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="prod" *ngIf="!isLoading && products.length !== 0">
+      <div class="container-fluid">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Date <span>Added</span></th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}; index as i;">
+              <th>{{ product.seq}}</th>
+              <th><img [src]="'http://localhost:3000/' + product.image" [alt]="product.name"></th>
+              <td>{{ product.name }}</td>
+              <td>{{ product.priceAfterDiscount | currency }}</td>
+              <td>{{ product.addedDate | date }}</td>
+              <td>
+                <ul class="options">
+                  <li>
+                    <a>
+                      <i class="far fa-eye"></i>
+                    </a>
+                  </li>
+                  <li (click)="toggleDropDown(dropDown)">
+                    <a>
+                      <i class="fas fa-caret-down"></i>
+                      <ul class="drop-down" #dropDown>
+                        <li [routerLink]="['/admin/products/edit/', product._id]"><a><i
+                              class="far fa-edit"></i><span>edit</span></a></li>
+                        <li (click)="deleteProduct(product._id)"><a><i class="fas fa-trash"></i><span>delete</span></a>
+                        </li>
+                      </ul>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event; goUp()" *ngIf="products?.length >= 10"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div class="shimmers" *ngIf="isLoading">
+    <div class="container-fluid">
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+    </div>
+  </div>
+  <div class="alert m-5" *ngIf="!isLoading && products.length == 0">there is no products</div>
+</div>

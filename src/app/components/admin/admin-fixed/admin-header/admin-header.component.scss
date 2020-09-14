@@ -1,0 +1,56 @@
+header {
+  width: 100%;
+  box-shadow: 3px 0px 8px 1px #eaeaea;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media print {
+    display: none;
+  }
+  .toggle-side {
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    i {
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 50%;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+  .admin-info {
+    ul {
+      li {
+        cursor: pointer;
+        display: inline-block;
+        line-height: 50px;
+        position: relative;
+        border-left: 1px solid #ebebeb;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          background-color: #fff;
+        }
+        a {
+          color: var(--mainColor);
+          text-decoration: none;
+          display: inline-block;
+          padding: 0 10px;
+          img {
+            width: 30px;
+            border-radius: 50%;
+          }
+          span {
+            margin-left: 5px;
+            text-transform: capitalize;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}

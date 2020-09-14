@@ -1,0 +1,45 @@
+@import "../../../../../assets/files/placeholders";
+.edit-products {
+  padding: 40px 0;
+  width: 50%;
+  margin: auto;
+  .img-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    img {
+      width: 100px;
+      height: 100px;
+      display: block;
+      border-radius: 50%;
+    }
+    i {
+      cursor: pointer;
+      margin-left: 20px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      background-color: var(--mainColor);
+      color: #fff;
+      border-radius: 50%;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  @media(max-width: 767px) {
+    width: 100%;
+    margin: unset;
+  }
+  .err {
+    font-size: 13px;
+  }
+  button {
+    @extend %mainButton;
+    &[disabled] {
+      opacity: 0.8;
+    }
+  }
+}

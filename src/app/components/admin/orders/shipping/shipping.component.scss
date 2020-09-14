@@ -1,0 +1,15 @@
+@import "../../../../../assets/files/placeholders";
+.shipping {
+  padding: 20px 0;
+  .order {
+    @media print {
+      height: 100vh;
+    }
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+    // Start Pannel of order
+    @extend %orderTable;
+    // End Pannel of order
+  }
+}

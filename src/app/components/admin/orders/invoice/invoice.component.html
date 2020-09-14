@@ -1,0 +1,86 @@
+<div class="invoice">
+  <div class="container-fluid">
+    <div class="order">
+      <div class="pannel-heading">
+        <h2><i class="fas fa-info"></i><span>Order Details (#{{order?.seq}})</span></h2>
+      </div>
+      <div class="pannel-body">
+        <table class="table order-info">
+          <thead>
+            <tr>
+              <th scope="col">Depot Information</th>
+              <th scope="col">Shipping Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="detail">
+                  <div class="logo">
+                    <img src="../../../../../assets/images/logo.png" alt="">
+                  </div>
+                </div>
+                <div class="detail">
+                  <h3>Mobile: <span>01152059120</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>E-mail: <span>razereng0@gmail.com</span></h3>
+                </div>
+              </td>
+              <td>
+                <div class="detail">
+                  <h3>Name: <span>{{ order?.clientName }}</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>Mobile: <span>{{ order?.mobile }}</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>Address: <span>{{ order?.address }}</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>City: <span>{{ order?.city }}</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>Country: <span>Egypt</span></h3>
+                </div>
+                <div class="detail">
+                  <h3>comment: <span>{{ order?.comment }}</span></h3>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table details">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Model</th>
+              <th class="text-right" scope="col">Quantity</th>
+              <th class="text-right" scope="col">Discount</th>
+              <th class="text-right" scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of productOrders">
+              <td>
+                <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                <span>{{ product.name }}</span>
+              </td>
+              <td>{{ product.category }}</td>
+              <td class="text-right">{{ product.amount }}</td>
+              <td class="text-right">{{ (product.discount / 100 |percent) }}</td>
+              <td class="text-right">{{ (product.priceAfterDiscount * product.amount) | currency }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="text-right">Total Price</td>
+              <td class="text-right">{{ totalPrice | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

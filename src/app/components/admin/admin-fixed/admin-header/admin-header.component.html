@@ -1,0 +1,20 @@
+<header>
+  <div class="toggle-side">
+    <i class="fas fa-hamburger" #burger (click)="toggleSide(burger)"></i>
+  </div>
+  <div class="admin-info">
+    <ul>
+      <li>
+        <a href="">
+          <img src="../../../../../assets/images/profile.png" alt="">
+          <span>hamdy emad</span>
+        </a>
+      </li>
+      <li (click)="logOut()">
+        <a>
+          <span>logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>

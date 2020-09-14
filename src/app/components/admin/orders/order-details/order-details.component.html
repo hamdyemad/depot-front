@@ -1,0 +1,235 @@
+<div class="order-details">
+  <!--Start Heading-->
+  <div class="heading">
+    <nav aria-label="breadcrumb">
+      <div class="container-fluid">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/admin/orders">Orders</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Order Details</li>
+        </ol>
+        <div class="icons">
+          <div class="icon">
+            <a [routerLink]="'/admin/order/invoice/' + order?._id">
+              <i class="fas fa-print"></i>
+              <div class="absolute-info left">Print Invoice</div>
+            </a>
+          </div>
+          <div class="icon">
+            <a routerLink="/admin/orders">
+              <i class="fas fa-arrow-left"></i>
+              <div class="absolute-info left">Orders</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <h2>Order Details</h2>
+    </div>
+  </div>
+  <!--End Heading-->
+  <!--Start About-->
+  <div class="about">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <h2><i class="fas fa-shopping-cart"></i><span>Order Details</span></h2>
+            <ul>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-shopping-cart"></i>
+                  <div class="absolute-info top">Store</div>
+                </div>
+                <span><a routerLink="/">Your Store</a></span>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-table"></i>
+                  <div class="absolute-info top">Date Added</div>
+                </div>
+                <span>{{ order?.dateAdded | date }}</span>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="far fa-credit-card"></i>
+                  <div class="absolute-info top">Payment Method</div>
+                </div>
+                <span>Cash On Delivery</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h2><i class="fas fa-user"></i><span>Customer Details</span></h2>
+            <ul>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-user"></i>
+                  <div class="absolute-info top">Customer Name</div>
+                </div>
+                <span>{{ order?.clientName }}</span>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-phone-alt"></i>
+                  <div class="absolute-info top">Mobile</div>
+                </div>
+                <span>{{ order?.mobile }}</span>
+              </li>
+              <li>
+                <div class="icon">
+                  <i class="fas fa-luggage-cart"></i>
+                  <div class="absolute-info top">Orders</div>
+                </div>
+                <span>{{ order?.orders.length }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End About-->
+
+  <div class="order-invoice">
+    <div class="container-fluid">
+      <div class="order">
+        <div class="pannel-heading">
+          <h2><i class="fas fa-info"></i><span>Order Details (#{{order?.seq}})</span></h2>
+        </div>
+        <div class="pannel-body">
+          <table class="table order-info">
+            <thead>
+              <tr>
+                <th scope="col">Depot Details</th>
+                <th scope="col">Shipping Address</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="detail">
+                    <div class="logo">
+                      <img src="../../../../../assets/images/logo.png" alt="">
+                    </div>
+                  </div>
+                  <div class="detail">
+                    <h3>Mobile: <span>01152059120</span></h3>
+                  </div>
+                  <div class="detail">
+                    <h3>E-mail: <span>razereng0@gmail.com</span></h3>
+                  </div>
+                </td>
+                <td>
+                  <div class="detail">
+                    <h3>Name: <span>{{ order?.clientName }}</span></h3>
+                  </div>
+                  <div class="detail">
+                    <h3>Mobile: <span>{{ order?.mobile }}</span></h3>
+                  </div>
+                  <div class="detail">
+                    <h3>Address: <span>7st ahmed shbeb from farag yousef asdasssssssssssssssssssssssssssssssssssssssss
+                        ad as</span></h3>
+                  </div>
+                  <div class="detail">
+                    <h3>City: <span>{{ order?.city }}</span></h3>
+                  </div>
+                  <div class="detail">
+                    <h3>Country: <span>Egypt</span></h3>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table details">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Model</th>
+                <th class="text-right" scope="col">Quantity</th>
+                <th class="text-right" scope="col">Discount</th>
+                <th class="text-right" scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of productOrders">
+                <td>
+                  <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                  <span>{{ product.name }}</span>
+                </td>
+                <td>{{ product.category }}</td>
+                <td class="text-right">{{ product.amount }}</td>
+                <td class="text-right">{{ (product.discount / 100 |percent) }}</td>
+                <td class="text-right">{{ (product.priceAfterDiscount * product.amount) | currency }}</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="text-right">Total Price</td>
+                <td class="text-right">{{ totalPrice | currency }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="order-history">
+        <div class="pannel-heading" *ngIf="historyArray?.length !== 0">
+          <h2><i class="far fa-comment"></i><span>Order History</span></h2>
+        </div>
+        <div class="pannel-body" *ngIf="historyArray?.length !== 0">
+          <table class="table details">
+            <thead>
+              <tr>
+                <th scope="col">Date Added</th>
+                <th scope="col">Comment</th>
+                <th scope="col">Status</th>
+                <th scope="col">Customer Notified</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let history of historyArray;">
+                <td>{{ history.dateModified | date:'dd:MM:yyyy' }}</td>
+                <td>{{ history.comment }}</td>
+                <td>{{ history.status }}</td>
+                <td>{{ (history.notifiedCustomer == true) ? 'Yes': 'No' }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="add-order-history">
+          <h2>Add Order History</h2>
+          <form [formGroup]="historyForm" (ngSubmit)="onAddHistory()">
+            <div class="form-group">
+              <label for="status">Order Status</label>
+              <select class="form-control" formControlName="status">
+                <option value="canceled">canceled</option>
+                <option value="complete">complete</option>
+                <option value="processed">processed</option>
+                <option value="pending">pending</option>
+                <option value="processing">processing</option>
+                <option value="reversed">reversed</option>
+                <option value="shipped">shipped</option>
+                <option value="shipped with fetcher">shipped with fetcher</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="notify">Notify Customer</label>
+              <input class="form-control" type="checkbox" formControlName="notifiedCustomer">
+            </div>
+            <div class="form-group">
+              <label for="comment">Comment</label>
+              <textarea class="form-control" formControlName="comment">
+              </textarea>
+            </div>
+            <div class="form-group btn-group">
+              <button><i class="fas fa-plus"></i><span>Add History</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

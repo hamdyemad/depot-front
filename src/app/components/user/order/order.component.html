@@ -1,0 +1,78 @@
+<div class="order">
+  <app-bread-crumb [name]="'Orders'"></app-bread-crumb>
+  <div class="order-info">
+    <div class="container">
+      <div class="row" *ngIf="carts?.length !== 0">
+        <div class="col-12 col-lg-8">
+          <nav aria-label="breadcrumb" class="main-bread-crumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+              <li class="breadcrumb-item"><a routerLink="/cart">Cart</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Orders</li>
+            </ol>
+          </nav>
+          <form [formGroup]="orderForm" (ngSubmit)="onOrder()">
+            <h2 class="heading">Order Details</h2>
+            <div class="form-group">
+              <label for="name">name</label>
+              <input type="text" class="form-control" formControlName="clientName">
+              <div class="err" *ngIf="clientName().errors?.required && clientName().dirty">name is required</div>
+            </div>
+            <div class="form-group">
+              <label for="address">address</label>
+              <input type="text" class="form-control" formControlName="address">
+              <div class="err" *ngIf="address().errors?.required && address().dirty">address is required</div>
+            </div>
+            <div class="form-group">
+              <label for="mobile">mobile</label>
+              <input type="text" class="form-control" formControlName="mobile">
+              <div class="err" *ngIf="mobile().errors?.required && mobile().dirty">mobile is required</div>
+              <div class="err" *ngIf="mobile().errors?.pattern && mobile().dirty">write a mobile number only</div>
+            </div>
+            <div class="form-group">
+              <label for="city">city</label>
+              <select class="custom-select" formControlName="city">
+                <option value=""></option>
+                <option value="cairo">cairo</option>
+                <option value="alex">alex</option>
+              </select>
+              <div class="err" *ngIf="city().errors?.required && city().dirty">city is required</div>
+            </div>
+            <div class="form-group">
+              <label for="comment">comment</label>
+              <textarea class="form-control" formControlName="comment"></textarea>
+            </div>
+            <div class="form-group about-confirm">
+              <a routerLink="/cart">
+                <i class="fas fa-angle-left"></i>
+                <span>go to cart</span>
+              </a>
+              <input type="submit" value="confirm order" [disabled]="orderForm.invalid">
+            </div>
+          </form>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="carts">
+            <div class="cart-info" *ngFor="let cart of carts">
+              <img [src]="'http://localhost:3000/' + cart.image" [alt]="cart.name">
+              <div class="cart-details">
+                <h3>{{ cart.name }}</h3>
+                <h4>{{ cart.amount }} x {{ cart.priceAfterDiscount | currency }}</h4>
+              </div>
+              <h4 class="total-cart">{{ (cart.amount * cart.priceAfterDiscount | currency) }}</h4>
+            </div>
+            <div class="flex-order">
+              <h3>shipping:</h3>
+              <h3>free</h3>
+            </div>
+            <div class="total-carts flex-order">
+              <h3>total:</h3>
+              <h3>{{ totalPrice | currency }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-info" *ngIf="carts?.length == 0">there is no carts to order</div>
+    </div>
+  </div>
+</div>

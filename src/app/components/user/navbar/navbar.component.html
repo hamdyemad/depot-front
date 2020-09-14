@@ -1,0 +1,140 @@
+<header>
+  <div class="container">
+    <div class="links" #sideBar>
+      <i class="fas fa-times" (click)="toggleSideBar(sideBar)"></i>
+      <ul class="sideBarLinks">
+        <li routerLink="/">
+          <a>home</a>
+          <div class="drop-down">
+            <ul>
+              <li><i class="fas fa-long-arrow-alt-right"></i><a href="">main home</a></li>
+              <li><i class="fas fa-long-arrow-alt-right"></i><a href="">minimal home</a></li>
+              <li><i class="fas fa-long-arrow-alt-right"></i><a href="">masonry home</a></li>
+              <li><i class="fas fa-long-arrow-alt-right"></i><a href="">classic home</a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a>shop</a></li>
+        <li><a href="">pages</a></li>
+        <li><a href="">elements</a></li>
+      </ul>
+    </div>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.png" alt="">
+    </div>
+    <div class="links">
+      <ul>
+        <li *ngIf="_auth.isLoggedIn()"><a href="">cart</a>
+          <div class="index">({{ cartLength }})</div>
+          <div class="drop-down drop-of-cart">
+            <div class="no-cart animated fadeIn" *ngIf="cartLength == 0">there is no cart</div>
+            <div class="cart" *ngIf="cartLength !== 0">
+              <div class="cart-info" #cartInfo>
+                <ng-container>
+                  <div class="carts animated fadeIn" #cartInfoChildren *ngFor="let cart of carts">
+                    <img [src]="'http://localhost:3000/' + cart.image" [alt]="cart.name">
+                    <div class="cart-details">
+                      <h3>{{ cart.name }}</h3>
+                      <p>{{ cart.amount }} x {{ cart.priceAfterDiscount | currency }}</p>
+                    </div>
+                    <i class="fas fa-times" (click)="removeCart(cart._id, cart.name)"></i>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="total">
+                <h4>total:</h4>
+                <h4>{{ totalPrice | currency }}</h4>
+              </div>
+              <div class="buttons">
+                <button routerLink="/cart">view cart</button>
+                <button routerLink="/order">checkout</button>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li *ngIf="_auth.isLoggedIn()"><a><i class="far fa-heart"></i></a>
+          <div class="index">(0)</div>
+        </li>
+        <li *ngIf="_auth.isLoggedIn() && !mobile" routerLink="/my-orders"><a>my orders</a></li>
+        <li *ngIf="!_auth.isLoggedIn()" (click)="togglePopup(popup)"><a><i class="fas fa-user"></i><span>login &
+              register</span></a>
+        </li>
+        <li *ngIf="_auth.isLoggedIn()" (click)="logOut()"><a><i
+              class="fas fa-sign-out-alt mr-1"></i><span>logout</span></a>
+        </li>
+        <li class="burger-link" (click)="toggleSideBar(sideBar)">
+          <a>
+            <i class="fas fa-hamburger"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+<!--Start Popup-->
+<div class="popup" #popup (click)="togglePopup(popup)">
+  <div class="content" (click)="stopProp($event)">
+    <ul class="loginAndSignUp">
+      <li class="activeLink" data-show=".loginForm">login</li>
+      <li data-show=".signUpForm">register</li>
+    </ul>
+    <div class="forms">
+      <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="loginForm activeForm">
+        <div class="form-group">
+          <input type="text" placeholder="email" formControlName="email">
+          <div class="err mt-1 animated fadeIn" *ngIf="loginEmail().errors?.required && loginEmail().dirty">email
+            is required</div>
+          <div class="err mt-1 animated fadeIn" *ngIf="emailMessage">{{ emailMessage }}</div>
+          <div class="err mt-1 animated fadeIn" *ngIf="loginEmail().errors?.email && loginEmail().dirty">write an
+            email format</div>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" formControlName="password">
+          <div class="err mt-1 animated fadeIn" *ngIf="passwordMessage">{{ passwordMessage }}</div>
+          <div class="err mt-1 animated fadeIn" *ngIf="loginPassword().errors?.required && loginPassword().dirty">
+            password is required
+          </div>
+        </div>
+        <div class="form-group remember-me" (click)="checkBox.click()">
+          <input type="checkbox" #checkBox><span>Remember me</span>
+        </div>
+        <div class="lost-password"><a href="">Lost your password?</a></div>
+        <div class="form-group">
+          <input type="submit" value="login" [disabled]="loginForm.invalid">
+        </div>
+      </form>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="signUpForm">
+        <div class="form-group">
+          <input type="text" placeholder="User Name" formControlName="userName">
+          <div class="err mt-1 animated fadeIn" *ngIf="userName().errors?.required && userName().dirty">username is
+            required</div>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email" formControlName="email">
+          <div class="err mt-1 animated fadeIn" *ngIf="email().errors?.required && email().dirty">email is required
+          </div>
+          <div class="err mt-1 animated fadeIn" *ngIf="email().errors?.email && email().dirty">write an email format
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" formControlName="password">
+          <div class="err mt-1 animated fadeIn" *ngIf="password().errors?.required && password().dirty">password is
+            required</div>
+          <div class="err mt-1 animated fadeIn" *ngIf="password().errors?.minlength">write at least
+            6</div>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Repeat Password" formControlName="confirmPassword">
+          <div class="err mt-1 animated fadeIn"
+            *ngIf="password().value !== confirmPassword().value && confirmPassword().touched">your password doesn't
+            match</div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="register"
+            [disabled]="registerForm.invalid || confirmPassword().value !== password().value">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--End Popup-->

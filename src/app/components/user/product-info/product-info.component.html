@@ -1,0 +1,49 @@
+<app-bread-crumb [name]="product?.name"></app-bread-crumb>
+<div class="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <div class="image-info animated fadeInLeft">
+          <img *ngIf="product?.image" [src]="'http://localhost:3000/' + product.image" [alt]="product?.name">
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="product-info" [class]="mobile ? 'animated fadeInLeft' : 'animated fadeInRight'">
+          <h1 class="name">Lorem ipsum dolor sit amet consectetu</h1>
+          <h2 class="price">{{ product?.priceAfterDiscount }}</h2>
+          <div class="reviews">
+            <i class="fas fa-star" *ngFor="let start of reviewsArr"></i>
+            <i class="far fa-star" *ngFor="let start of nonReview"></i>
+          </div>
+          <p class="description">{{ product?.description }}</p>
+          <div class="group">
+            <div class="input-info">
+              <label for="quantity">quantity</label>
+              <div class="input-group">
+                <i class="fas fa-caret-left" (click)="decreaseAmount()"></i>
+                <input type="number" [value]="amount" readonly>
+                <i class="fas fa-caret-right" (click)="increaseAmount()"></i>
+              </div>
+            </div>
+            <button (click)="addToCart()">
+              add to cart
+            </button>
+          </div>
+          <div class="wish-list">
+            <a href="">
+              <i class="far fa-heart"></i>
+              <span>add to wishlist</span>
+            </a>
+          </div>
+          <div class="other-info">
+            <ul>
+              <li><span>code: </span>{{ product?.seq }}</li>
+              <li><span>category: </span> <a routerLink="/"
+                  [queryParams]="{category: product?.category}">{{ product?.category }}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

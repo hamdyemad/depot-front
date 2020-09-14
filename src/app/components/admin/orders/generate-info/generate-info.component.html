@@ -1,0 +1,13 @@
+<div class="generator">
+  <div class="container-fluid">
+    <form [formGroup]="excelGeneratorForm" (ngSubmit)="onChangeStatus()">
+      <div class="form-group">
+        <label for="status">Orders I'd</label>
+        <textarea class="form-control" formControlName="seqs"></textarea>
+      </div>
+      <div class="form-group">
+        <button>Export Excel</button>
+      </div>
+    </form>
+  </div>
+</div>

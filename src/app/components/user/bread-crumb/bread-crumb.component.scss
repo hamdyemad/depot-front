@@ -1,0 +1,23 @@
+.bread-crumb {
+  height: 250px;
+  background-image: url("../../../../assets/images/breadcrumb.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 767px) {
+    height: 100px;
+  }
+  .overlay {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 40px;
+    letter-spacing: 15px;
+    font-weight: bold;
+    @media (max-width: 767px) {
+      font-size: 20px;
+    }
+  }
+}

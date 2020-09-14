@@ -1,0 +1,97 @@
+<div class="home">
+  <!--Start Carousel-->
+  <div class="container-fluid">
+    <div class="carousel">
+      <div class="indecators animated fadeInLeft">
+        <div class="indecator activeIndecator" data-index="0">01</div>
+        <div class="indecator" data-index="1">02</div>
+        <div class="indecator" data-index="2">03</div>
+      </div>
+      <div class="container">
+        <div class="carousel-info {{carousel.class}}" *ngFor="let carousel of carousels">
+          <div class="content">
+            <h1 [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">{{ carousel.header }}</h1>
+            <p [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">{{ carousel.paragraph }}</p>
+          </div>
+          <div class="imgs">
+            <img [class]="carousel.class == 'activeCarousel' ? 'animated fadeInUp' : ''" [src]="carousel.firstImgPath"
+              alt="">
+            <img [class]="carousel.class == 'activeCarousel' && carousel.vasa ? 'animated fadeInDown' : ''"
+              [src]="carousel.secImgPath" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Carousel-->
+  <div class="main-products">
+    <div class="container">
+      <!--Start Filter-->
+      <div class="filters">
+        <div class="filter-by-link" [class]="categorys?.length > 8 ? 'activeScroll' : null">
+          <ul>
+            <li routerLinkActive="activeLink" routerLink="/" [queryParams]="{category: 'all'}"><a>all</a></li>
+            <li *ngFor="let category of categorys" routerLinkActive="activeLink" routerLink="/"
+              [queryParams]="{category: category}"><a>{{ category }}</a></li>
+          </ul>
+        </div>
+        <div class="filter-by-choose wow fadeIn" data-wow-offset="100">
+          <ul>
+            <li><a>filter</a>
+              <div class="drop-down">
+                <ul>
+                  <li><a>sort by</a></li>
+                  <li routerLinkActive="activeFilter" routerLink="" [queryParams]="{min: 0, max: 150}"><a>$0-$150</a>
+                  </li>
+                  <li routerLinkActive="activeFilter" routerLink="" [queryParams]="{min: 100, max: 1000}">
+                    <a>$100-$1000</a>
+                  </li>
+                  <li routerLinkActive="activeFilter" routerLink="" [queryParams]="{min: 40}"><a>$40+</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--End Filter-->
+
+      <!--Start Products-->
+      <div class="products">
+        <div class="alert alert-info animated fadeInDown" *ngIf="products?.length == 0">there is no products</div>
+        <div class="row justify-content-center" *ngIf="products?.length !== 0">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+            *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}">
+            <div class="product-info">
+              <div class="img-info">
+                <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                <div class="overlay">
+                  <div class="status">
+                    <div class="status-info">new</div>
+                    <span class="discount" *ngIf="product.price !== product.priceAfterDiscount">-
+                      {{ (product.discount / 100 | percent) }}</span>
+                  </div>
+                  <div class="quick-look">
+                    <a [routerLink]="['product/', product._id, product.name]"><span>quick look</span></a>
+                    <i class="fas fa-heart"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="info">
+                <h1>{{ product.name }}</h1>
+                <div class="about-info">
+                  <a (click)="addToCart(product)">add to cart</a>
+                  <div class="prices">
+                    <del *ngIf="product.price !== product.priceAfterDiscount">{{ product.price |currency }}</del>
+                    <p>{{ product.priceAfterDiscount | currency }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event; goUp()"></pagination-controls>
+      </div>
+      <!--End Products-->
+    </div>
+  </div>
+</div>

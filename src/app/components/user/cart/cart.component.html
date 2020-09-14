@@ -1,0 +1,84 @@
+<div class="cart">
+  <app-bread-crumb [name]="'Cart'"></app-bread-crumb>
+  <div class="cart-info">
+    <div class="container">
+      <div class="row" *ngIf="carts?.length !== 0">
+        <div class="col-12 col-lg-8">
+          <nav aria-label="breadcrumb" class="main-bread-crumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Cart</li>
+            </ol>
+          </nav>
+          <div class="shopping-cart">
+            <h2 class="heading">shopping cart</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="d-none d-md-table-cell" scope="col">image</th>
+                  <th scope="col">name</th>
+                  <th class="d-none d-md-table-cell" scope="col">price</th>
+                  <th scope="col">quantity</th>
+                  <th scope="col">total</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let cart of carts; index as i">
+                  <td class="d-none d-md-table-cell" scope="row"><img [src]="'http://localhost:3000/' + cart.image"
+                      [alt]="cart.name"></td>
+                  <td>{{ cart.name }}</td>
+                  <td class="d-none d-md-table-cell">{{ cart.priceAfterDiscount | currency }}</td>
+                  <td>
+                    <div class="input-info">
+                      <label for="quantity">quantity</label>
+                      <div class="input-group">
+                        <i class="fas fa-caret-left" (click)="decreaseAmount(i, cart.name)"></i>
+                        <input type="number" [value]="cart.amount" readonly #amount>
+                        <i class="fas fa-caret-right" (click)="increaseAmount(i, cart.name)"></i>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ (cart.priceAfterDiscount * cart.amount | currency) }}</td>
+                  <td><i class="fas fa-times" (click)="removeCart(cart._id)"></i></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="coupon-and-update">
+              <div class="coupon">
+                <div class="coupon-input">
+                  <i class="fas fa-gift"></i>
+                  <input type="text" placeholder="Coupon code">
+                </div>
+                <button>apply coupon</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="cart-total">
+            <h2 class="heading">cart totals</h2>
+            <ul>
+              <li>
+                <h3>subtotal:</h3>
+                <span>{{ totalPrice | currency }}</span>
+              </li>
+              <li>
+                <h3>shipping:</h3>
+                <span>free</span>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <h3>total</h3>
+                <span>{{ totalPrice | currency }}</span>
+              </li>
+            </ul>
+            <button routerLink="/order">proceed to checkout</button>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-info" *ngIf="carts?.length == 0">there is no carts</div>
+    </div>
+  </div>
+</div>

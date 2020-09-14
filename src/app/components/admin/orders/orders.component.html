@@ -1,0 +1,147 @@
+<div class="orders">
+  <div class="all-info">
+    <div class="filters">
+      <div class="filter" (click)="toggleForm(form)">
+        <div class="heading">
+          <div class="container-fluid">
+            <div class="filter-heading">
+              <i class="fas fa-filter"></i>
+              <h3>Filter</h3>
+            </div>
+            <div class="icons">
+              <div class="icon" *ngIf="arr.length !== 0">
+                <a [routerLink]="['/admin/order/shipping', arr]">
+                  <i class="fas fa-print"></i>
+                  <div class="absolute-info left">Print Invoice</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <form (click)="stopProp($event)" #form [formGroup]="orderForm" (ngSubmit)="filter()">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="orderid">order id</label>
+                  <input type="text" class="form-control" placeholder="Order ID" formControlName="id">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="customer name">customer name</label>
+                  <input type="text" class="form-control" placeholder="customer Name" formControlName="name">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="status">status</label>
+                  <select class="custom-select" formControlName="status">
+                    <option value=""></option>
+                    <option value="canceled">canceled</option>
+                    <option value="chargeback">chargeback</option>
+                    <option value="complete">complete</option>
+                    <option value="processed">processed</option>
+                    <option value="pending">pending</option>
+                    <option value="procissing">procissing</option>
+                    <option value="reversed">reversed</option>
+                    <option value="shipped">shipped</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                  <label for="City">City</label>
+                  <select class="custom-select" formControlName="city">
+                    <option value=""></option>
+                    <option value="cairo">cairo</option>
+                    <option value="alex">alex</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-group group-icon">
+                  <label for="date">date</label>
+                  <input type="date" name="" id="" class="form-control" formControlName="dateAdded">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-8 align-self-end">
+                <div class="form-group">
+                  <button><i class="fas fa-filter"></i>
+                    <span>Filter</span></button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="orders-inf" *ngIf="!isLoading && orders.length !== 0">
+      <div class="container-fluid">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><input type="checkbox" class="form-control" (change)="do($event.target)"></th>
+              <th scope="col">id</th>
+              <th scope="col">Customer</th>
+              <th scope="col">City</th>
+              <th scope="col">Status</th>
+              <th scope="col">Total</th>
+              <th scope="col">Date <span>Added</span></th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders | paginate: {itemsPerPage: 10, currentPage: p}; index as i;">
+              <th scope="row"><input type="checkbox" class="form-control check" [value]="order._id"
+                  (change)="showValues($event.target)">
+              </th>
+              <th>{{ order.seq }}</th>
+              <td>{{ order.clientName }}</td>
+              <td>{{ order.city}}</td>
+              <td>{{ order.status }}</td>
+              <td>{{totalPrice(i, orders) | currency}}</td>
+              <td>{{ order.dateAdded | date }}</td>
+              <td>
+                <ul class="options">
+                  <li [routerLink]="['/admin/order/', order._id]">
+                    <a>
+                      <i class="far fa-eye"></i>
+                    </a>
+                  </li>
+                  <li (click)="toggleDropDown(dropDown)">
+                    <a>
+                      <i class="fas fa-caret-down"></i>
+                      <ul class="drop-down" #dropDown>
+                        <li><a><i class="far fa-edit"></i><span>edit</span></a></li>
+                        <li (click)="deleteOrder(order._id)"><a><i class="fas fa-trash"></i><span>delete</span></a>
+                        </li>
+                      </ul>
+                    </a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <pagination-controls (pageChange)="p = $event; goUp()" *ngIf="orders?.length >= 10"></pagination-controls>
+      </div>
+    </div>
+  </div>
+  <div class="shimmers" *ngIf="isLoading">
+    <div class="container-fluid">
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+      <ngx-shimmer-loading></ngx-shimmer-loading>
+    </div>
+  </div>
+  <div class="alert m-5" *ngIf="!isLoading && orders.length == 0">there is no orders</div>
+</div>

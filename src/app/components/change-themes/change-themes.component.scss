@@ -1,0 +1,67 @@
+.change-theme {
+  position: fixed;
+  right: 0;
+  padding: 20px;
+  top: 150px;
+  border-top-left-radius: 5px;
+  background: #fff;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0px 0px 11px 2px #e6e6e6;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+  z-index: 2;
+  @media print {
+    display: none;
+  }
+  &.activeBox {
+    transform: translateX(0);
+  }
+  i {
+    position: absolute;
+    background: #fff;
+    left: -30px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0px 0px 11px 2px #e6e6e6;
+    line-height: 25px;
+  }
+  .box {
+    text-align: center;
+    h5 {
+      margin-bottom: 5px;
+      text-transform: capitalize;
+    }
+    ul {
+      li {
+        display: inline-block;
+        cursor: pointer;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        transition: all 0.3s ease-in-out;
+        @each $var, $color,
+          $secColor in (first-child, var(--blue), var(--secBlue)),
+          (nth-child(2), var(--green), var(--secGreen)),
+          (nth-child(3), var(--purple), var(--secPurple)),
+          (nth-child(4), var(--orange), var(--secOrange)),
+          (nth-child(5), var(--dark), var(--secDark))
+        {
+          &:#{$var} {
+            background-color: $color;
+            &:hover {
+              background-color: $secColor;
+            }
+          }
+        }
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
