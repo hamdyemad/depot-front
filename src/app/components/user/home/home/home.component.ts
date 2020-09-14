@@ -1,4 +1,5 @@
-import { HttpResponse, HttpEvent, HttpEventType } from '@angular/common/http';
+import { environment as env } from './../../../../../environments/environment';
+import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { AuthService } from './../../../../services/auth_service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from './../../../../services/cart_service/cart.service';
@@ -17,6 +18,7 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
 
+  url = env.DB_URL;
   p = 1;
   categorys: Array<string>;
   carousels: Array<any>;

@@ -63,7 +63,7 @@
             *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}">
             <div class="product-info">
               <div class="img-info">
-                <img [src]="'http://localhost:3000/' + product.image" [alt]="product.name">
+                <img [src]="url +'/' + product.image" [alt]="product.name">
                 <div class="overlay">
                   <div class="status">
                     <div class="status-info">new</div>
