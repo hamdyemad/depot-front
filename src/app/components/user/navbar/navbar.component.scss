@@ -313,7 +313,7 @@ header {
 
 // Start Popup
 .popup {
-  z-index: 2;
+  z-index: 9999;
   position: fixed;
   opacity: 0;
   pointer-events: none;
