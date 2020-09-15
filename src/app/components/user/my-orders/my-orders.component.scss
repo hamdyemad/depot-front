@@ -112,6 +112,7 @@
                 background-color: var(--mainColor);
               }
             }
+
           }
         }
       }
@@ -156,6 +157,26 @@
           height: 200px;
         }
       }
+    }
+  }
+}
+
+
+::ng-deep {
+  .mat-ripple-element {
+    background-color:  red !important;
+  }
+  mat-tab-header {
+    .mat-tab-label-container {
+      .mat-tab-label-content {
+        color: var(--secColor);
+        &:focus {
+          color: var(--mainColor) !important;
+        }
+      }
+    }
+    mat-ink-bar {
+      background-color: var(--mainColor) !important;
     }
   }
 }

@@ -50,20 +50,6 @@
         font-size: 13px;
       }
     }
-    .wish-list {
-      text-transform: uppercase;
-      a {
-        font-size: 13px;
-        i {
-          margin-right: 5px;
-        }
-        color: var(--mainColor);
-        text-decoration:none;
-        &:hover {
-          color: var(--secColor);
-        }
-      }
-    }
     .other-info {
       margin-top: 10px;
       li {

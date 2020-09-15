@@ -10,7 +10,7 @@
       <div class="col-12 col-lg-6">
         <div class="product-info" [class]="mobile ? 'animated fadeInLeft' : 'animated fadeInRight'">
           <h1 class="name">Lorem ipsum dolor sit amet consectetu</h1>
-          <h2 class="price">{{ product?.priceAfterDiscount }}</h2>
+          <h2 class="price">{{ product?.priceAfterDiscount | currency }}</h2>
           <div class="reviews">
             <i class="fas fa-star" *ngFor="let start of reviewsArr"></i>
             <i class="far fa-star" *ngFor="let start of nonReview"></i>
@@ -28,12 +28,6 @@
             <button (click)="addToCart()">
               add to cart
             </button>
-          </div>
-          <div class="wish-list">
-            <a href="">
-              <i class="far fa-heart"></i>
-              <span>add to wishlist</span>
-            </a>
           </div>
           <div class="other-info">
             <ul>

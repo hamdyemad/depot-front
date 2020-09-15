@@ -1,3 +1,4 @@
+import { InternetInterceptor } from './interceptors/internet-checking/internet.interceptor';
 import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { AuthInterceptor } from './interceptors/authorization/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,13 +14,15 @@ import { UserModule } from './components/user/user.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ChangeThemesComponent } from './components/change-themes/change-themes.component';
 import { ToastrModule } from 'ngx-toastr';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    ChangeThemesComponent
+    ChangeThemesComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,11 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
+  entryComponents: [
+    DialogComponent
+  ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InternetInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

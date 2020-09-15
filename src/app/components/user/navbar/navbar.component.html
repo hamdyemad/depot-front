@@ -52,9 +52,6 @@
             </div>
           </div>
         </li>
-        <li *ngIf="_auth.isLoggedIn()"><a><i class="far fa-heart"></i></a>
-          <div class="index">(0)</div>
-        </li>
         <li *ngIf="_auth.isLoggedIn() && !mobile" routerLink="/my-orders"><a>my orders</a></li>
         <li *ngIf="!_auth.isLoggedIn()" (click)="togglePopup(popup)"><a><i class="fas fa-user"></i><span>login &
               register</span></a>

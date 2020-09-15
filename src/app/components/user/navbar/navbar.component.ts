@@ -110,9 +110,8 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
       this.getAllCarts();
     })
   }
-
   getAllCarts() {
-    if (this._auth.isLoggedIn()) {
+    if (this._auth.isLoggedIn() && !this._auth.isAdmin()) {
       this.cart$ = this._cart.getAllCarts().subscribe((res: Array<Object>) => {
         this.cartLength = res.length;
         this.carts = res;

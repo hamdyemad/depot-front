@@ -12,6 +12,7 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { OrderComponent } from './order/order.component';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { MaterialModule } from '../../material.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
     UserRoutingModule,
     HomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class UserModule { }
