@@ -11,10 +11,10 @@ export const blue: Theme = {
   }
 }
 export const green: Theme = {
-  name: 'green',
+  name: 'red',
   properites: {
-    "--mainColor": "var(--green)",
-    "--secColor": "var(--secGreen)"
+    "--mainColor": "var(--red)",
+    "--secColor": "var(--secRed)"
   }
 }
 export const purple: Theme = {

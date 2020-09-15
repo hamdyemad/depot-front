@@ -164,15 +164,13 @@
 
 ::ng-deep {
   .mat-ripple-element {
-    background-color:  red !important;
+    background-color: var(--mainColor) !important;
+    opacity: 0.2;
   }
   mat-tab-header {
     .mat-tab-label-container {
       .mat-tab-label-content {
-        color: var(--secColor);
-        &:focus {
-          color: var(--mainColor) !important;
-        }
+        color: var(--mainColor);
       }
     }
     mat-ink-bar {

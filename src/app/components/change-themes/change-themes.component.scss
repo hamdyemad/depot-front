@@ -46,7 +46,7 @@
         transition: all 0.3s ease-in-out;
         @each $var, $color,
           $secColor in (first-child, var(--blue), var(--secBlue)),
-          (nth-child(2), var(--green), var(--secGreen)),
+          (nth-child(2), var(--red), var(--secRed)),
           (nth-child(3), var(--purple), var(--secPurple)),
           (nth-child(4), var(--orange), var(--secOrange)),
           (nth-child(5), var(--dark), var(--secDark))
