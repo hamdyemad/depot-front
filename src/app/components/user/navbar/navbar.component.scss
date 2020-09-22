@@ -47,8 +47,8 @@ header {
           &.activeSidebar {
             transform: translateX(0) !important;
           }
-          ul {
-            li {
+          >ul {
+           >li {
               display: block;
               a {
                 color: var(--secColor);
@@ -111,7 +111,7 @@ header {
         }
       }
       // End Sidebar
-      ul {
+      > ul {
         > li {
           cursor: pointer;
           position: relative;
@@ -120,11 +120,18 @@ header {
           @media (max-width: 991px) {
             padding: 5px;
           }
-          &:not(:last-child) {
-            margin-right: 10px;
+          select {
+            background-color: var(--mainColor);
+            color: #fff;
+            text-transform: uppercase;
+            border: none;
+            letter-spacing: 1px;
+            font-weight: bold;
+            padding: 3px 2px;
+            border-radius: 3px;
           }
           a {
-            font-size: 13px;
+            font-size: 16px;
             text-transform: uppercase;
             text-decoration: none;
             color: var(--mainColor);
@@ -173,11 +180,11 @@ header {
               left: unset;
             }
             ul {
-              width: 180px;
+              width: 200px;
               padding: 20px 0;
               text-transform: capitalize;
               font-size: 13px;
-              li {
+              > li {
                 width: 100%;
                 cursor: pointer;
                 padding: 5px 15px;
@@ -212,6 +219,8 @@ header {
                 }
               }
             }
+
+            // Start Cart
             .no-cart {
               width: 200px;
               padding: 20px;
@@ -240,7 +249,7 @@ header {
                     margin: 0;
                   }
                   p {
-                    font-size: 12px;
+                    font-size: 14px;
                   }
                 }
                 i {
@@ -290,6 +299,7 @@ header {
                 }
               }
             }
+            // End Cart
           }
           // End Drop down
         }
@@ -299,16 +309,72 @@ header {
       @media (max-width: 991px) {
         order: -1;
       }
-      img {
-        width: 100px;
-        height: 20px;
-        @media (max-width: 320px) {
-          width: 60px;
-          height: 18px;
+      h1 {
+        margin: 0;
+      }
+    }
+  }
+}
+
+// On RTL
+.right {
+  // Start Links
+  .links {
+    ul {
+      li {
+        i {
+          margin-right: 0;
+          margin-left: 5px;
+        }
+        .drop-down {
+            left: unset !important;
+            right: 0 !important;
+            ul {
+              li {
+                i {
+                  transform: rotate(180deg);
+                  margin-left: 5px;
+                }
+                &:hover {
+                  padding-right: 25px !important;
+                }
+              }
+            }
+        }
+        .index {
+          margin-left: 0px;
+          margin-right: 5px;
+        }
+        .fa-sign-out-alt {
+          transform: rotate(180deg);
         }
       }
     }
   }
+  // End Links
+
+  // Start Popup Login & signup
+  .popup {
+    .remember-me {
+      input {
+        margin-right: 0px;
+        margin-left: 7px;
+      }
+    }
+  }
+  // End Popup Login & Signup
+  // Start Cart
+  .cart {
+    .cart-details {
+      margin-left: 0px;
+      margin-right: 10px;
+    }
+    i {
+      right: auto !important;
+      left: 5px !important;
+    }
+  }
+  // End Cart
 }
 
 // Start Popup
@@ -354,7 +420,7 @@ header {
         display: none;
         .err {
           color: var(--secColor);
-          font-size: 12px;
+          font-size: 16px;
           letter-spacing: 0.5px;
         }
         &.activeForm {
@@ -364,7 +430,7 @@ header {
           color: var(--secColor);
           padding: 10px 15px;
           border: 1px solid #e1e1e1;
-          font-size: 12px;
+          font-size: 16px;
           width: 100%;
           outline: none;
           transition: all 0.2s ease-in-out;
@@ -378,7 +444,6 @@ header {
             text-transform: uppercase;
             border: none;
             padding: 15px;
-            font-size: 12px;
             &[disabled] {
               background-color: var(--secColor);
             }
@@ -388,7 +453,6 @@ header {
           margin-top: 30px;
           a {
             color: #929292;
-            font-size: 14px;
           }
         }
         .remember-me {
@@ -401,7 +465,6 @@ header {
             margin-right: 7px;
           }
           span {
-            font-size: 13px;
             color: #929292;
           }
         }

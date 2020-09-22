@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +14,7 @@ import { OrderComponent } from './order/order.component';
 import { ProductInfoComponent } from './product-info/product-info.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MaterialModule } from '../../material.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MaterialModule } from '../../material.module';
     HomeModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    TranslateModule
   ]
 })
 export class UserModule { }

@@ -2,47 +2,101 @@
   <div class="container-fluid">
     <h2 class="text-center">Add Product</h2>
     <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="name">Product Name</label>
-        <input class="form-control" [ngClass]="{
-          'is-valid': !name().invalid && name().dirty,
-          'is-invalid': name().invalid && name().dirty
-        }" type="text" formControlName="name">
-        <div class="valid-feedback err">Looks good!</div>
-        <div class="invalid-feedback err">
-          product name is required
+      <div class="row">
+        <!--Start Product Name-->
+        <div class="col-6">
+          <div class="form-group">
+            <label for="name">Product Name In English</label>
+            <input class="form-control" [ngClass]="{
+              'is-valid': !name().invalid && name().dirty,
+              'is-invalid': name().invalid && name().dirty
+            }" type="text" formControlName="name">
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              product name is required
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="description">Product Description</label>
-        <input class="form-control" [ngClass]="{
-          'is-valid': !description().invalid && description().dirty,
-          'is-invalid': description().invalid && description().dirty
-        }" type="text" formControlName="description">
-        <div class="valid-feedback err">Looks good!</div>
-        <div class="invalid-feedback err">
-          description is required
+        <div class="col-6">
+          <div class="form-group">
+            <label for="name">Product Name In Arabic</label>
+            <input class="form-control" [ngClass]="{
+              'is-valid': !nameAr().invalid && nameAr().dirty,
+              'is-invalid': nameAr().invalid && nameAr().dirty
+            }" type="text" formControlName="nameAr">
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              product name is required
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="category">Product Category</label>
-        <select class="custom-select" [ngClass]="{
-          'is-valid': !category().invalid && category().dirty,
-          'is-invalid': category().invalid && category().dirty
-        }" formControlName="category">
-          <option value=""></option>
-          <option value="arts">arts</option>
-          <option value="chairs">chairs</option>
-          <option value="chandeliers">chandeliers</option>
-          <option value="cups">cups</option>
-          <option value="heaters">heaters</option>
-          <option value="tables">tables</option>
-          <option value="watches">watches</option>
-        </select>
-        <div class="valid-feedback err">Looks good!</div>
-        <div class="invalid-feedback err">
-          category is required
+        <!--End Product Name-->
+        <!--Start Product Description-->
+        <div class="col-6">
+          <div class="form-group">
+            <label for="description">Product Description In English</label>
+            <input class="form-control" [ngClass]="{
+              'is-valid': !description().invalid && description().dirty,
+              'is-invalid': description().invalid && description().dirty
+            }" type="text" formControlName="description">
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              description is required
+            </div>
+          </div>
         </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="description">Product Description In Arabic</label>
+            <input class="form-control" [ngClass]="{
+              'is-valid': !descriptionAr().invalid && descriptionAr().dirty,
+              'is-invalid': descriptionAr().invalid && descriptionAr().dirty
+            }" type="text" formControlName="descriptionAr">
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              description is required
+            </div>
+          </div>
+        </div>
+        <!--End Product Description-->
+        <!--Start Product Category-->
+        <div class="col-6">
+          <div class="form-group">
+            <label for="category">Product Category In English</label>
+            <select class="custom-select" [ngClass]="{
+              'is-valid': !category().invalid && category().dirty,
+              'is-invalid': category().invalid && category().dirty
+            }" formControlName="category">
+              <option value=""></option>
+              <option value="arts">arts</option>
+              <option value="chairs">chairs</option>
+              <option value="chandeliers">chandeliers</option>
+            </select>
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              category is required
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="category">Product Category In Arabic</label>
+            <select class="custom-select" [ngClass]="{
+              'is-valid': !categoryAr().invalid && categoryAr().dirty,
+              'is-invalid': categoryAr().invalid && categoryAr().dirty
+            }" formControlName="categoryAr">
+              <option value=""></option>
+              <option value="الفنون">الفنون</option>
+              <option value="الكراسي">الكراسي</option>
+              <option value="المطابخ">المطابخ</option>
+            </select>
+            <div class="valid-feedback err">Looks good!</div>
+            <div class="invalid-feedback err">
+              category is required
+            </div>
+          </div>
+        </div>
+        <!--End Product Category-->
       </div>
       <div class="form-group">
         <label for="price">Product Price</label>

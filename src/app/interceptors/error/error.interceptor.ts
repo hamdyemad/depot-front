@@ -19,10 +19,11 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(catchError((err: HttpErrorResponse) => {
-      let errorTxt = 'please login first you are not authorized !';
+      let errorTxt = 'you are not authorized !';
       localStorage.removeItem('role');
       this.toastr.error(errorTxt, err.error);
       this._auth.logOut();
+      this.router.navigate(['/']);
       throw new Error(errorTxt);
     }))
   }

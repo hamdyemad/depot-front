@@ -1,10 +1,12 @@
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateDetectionService } from './../../../services/translate_service/translate-detection.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../../services/auth_service/auth.service';
 import { CartService } from './../../../services/cart_service/cart.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { ProductsService } from './../../../services/products_service/products.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Products } from '../../../models/products.model';
 import { environment as env } from '../../../../environments/environment';
 
@@ -15,11 +17,9 @@ import { environment as env } from '../../../../environments/environment';
 })
 export class ProductInfoComponent implements OnInit {
 
+  @ViewChild('mainProduct', { static: true }) mainProduct: ElementRef;
   url = env.DB_URL;
   amount: number = 1;
-  reviews = 3;
-  reviewsArr = [];
-  nonReview = [];
   product: Products;
   mobile = matchMedia('(max-width: 767px)').matches;
   constructor(
@@ -27,11 +27,12 @@ export class ProductInfoComponent implements OnInit {
     private _products: ProductsService,
     private _cart: CartService,
     private _auth: AuthService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private _translate: TranslateDetectionService,
+    public translate: TranslateService) { }
 
   ngOnInit(): void {
-    // review fn
-    this.reviewFn();
+    this._translate.changeStyle(this.mainProduct);
     this.route.paramMap.subscribe(param => {
       if (param.keys.length !== 0) {
         let id = param.get('id');
@@ -71,15 +72,6 @@ export class ProductInfoComponent implements OnInit {
 
   }
 
-  // Go Review
-  reviewFn() {
-    for (let i = 0; i < this.reviews; i++) {
-      this.reviewsArr.push(i);
-    }
-    for (let y = 0; y < (5 - this.reviewsArr.length); y++) {
-      this.nonReview.push(y);
-    }
-  }
 
   addToCart() {
     if (this._auth.isLoggedIn()) {
@@ -89,20 +81,36 @@ export class ProductInfoComponent implements OnInit {
         this.product.name,
         this.product.description,
         this.product.category,
+        this.product.nameAr,
+        this.product.descriptionAr,
+        this.product.categoryAr,
         this.product.image,
         this.product.price,
         priceAfterDiscount,
         this.product.discount,
         this.amount).subscribe((res: any) => {
-          console.log(res);
-          if (res.ok) {
-            this.toastr.info('has been updated', this.product.name);
+          if (this.translate.currentLang == 'en' || this.translate.currentLang == undefined) {
+            console.log(res);
+            if (res.ok) {
+              this.toastr.info('has been updated', this.product.name);
+            } else {
+              this.toastr.success('has added to cart', this.product.name);
+            }
           } else {
-            this.toastr.success('has added to cart', this.product.name);
+            if (res.ok) {
+              this.toastr.info('تم تعديله', this.product.name);
+            } else {
+              this.toastr.success('تم اضافته للسلة', this.product.name);
+            }
           }
         })
     } else {
-      this.toastr.error('please login first to add cart');
+      if (this.translate.currentLang == 'en' || this.translate.currentLang == undefined) {
+        this.toastr.error('please login first to add cart');
+      } else {
+        this.toastr.error('برجاء التسجيل اولا لأتمام الأضافة للسلة');
+
+      }
     }
   }
 

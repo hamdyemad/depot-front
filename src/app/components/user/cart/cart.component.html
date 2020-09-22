@@ -1,37 +1,41 @@
-<div class="cart">
-  <app-bread-crumb [name]="'Cart'"></app-bread-crumb>
+<div class="cart" #cart>
+  <app-bread-crumb [name]="'cart.cart' | translate"></app-bread-crumb>
   <div class="cart-info">
     <div class="container">
       <div class="row" *ngIf="carts?.length !== 0">
         <div class="col-12 col-lg-8">
           <nav aria-label="breadcrumb" class="main-bread-crumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Cart</li>
+              <li class="breadcrumb-item"><a routerLink="/">{{ 'cart.breadCrumbBefore' | translate }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ 'cart.breadCrumbActive' | translate }}</li>
             </ol>
           </nav>
           <div class="shopping-cart">
-            <h2 class="heading">shopping cart</h2>
+            <h2 class="heading">{{ 'cart.headingCart' | translate }}</h2>
             <table class="table">
               <thead>
                 <tr>
-                  <th class="d-none d-md-table-cell" scope="col">image</th>
-                  <th scope="col">name</th>
-                  <th class="d-none d-md-table-cell" scope="col">price</th>
-                  <th scope="col">quantity</th>
-                  <th scope="col">total</th>
+                  <th class="d-none d-md-table-cell" scope="col">{{ 'cart.carts.image' | translate }}</th>
+                  <th scope="col">{{ 'cart.carts.name' | translate }}</th>
+                  <th class="d-none d-md-table-cell" scope="col">{{ 'cart.carts.price' | translate }}</th>
+                  <th scope="col">{{ 'cart.carts.quantity' | translate }}</th>
+                  <th scope="col">{{ 'cart.carts.total' | translate }}</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let cart of carts; index as i">
-                  <td class="d-none d-md-table-cell" scope="row"><img [src]="url +'/' + cart.image" [alt]="cart.name">
+                  <td class="d-none d-md-table-cell" scope="row">
+                    <img *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined"
+                      [src]="url +'/' + cart.image" [alt]="cart.name">
+                    <img *ngIf="translate.currentLang == 'ar'" [src]="url +'/' + cart.image" [alt]="cart.nameAr">
                   </td>
-                  <td>{{ cart.name }}</td>
-                  <td class="d-none d-md-table-cell">{{ cart.priceAfterDiscount | currency }}</td>
+                  <td *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">{{ cart.name }}</td>
+                  <td *ngIf="translate.currentLang == 'ar'">{{ cart.nameAr }}</td>
+                  <td class="d-none d-md-table-cell">{{ cart.priceAfterDiscount | currency:'EGP' }}</td>
                   <td>
                     <div class="input-info">
-                      <label for="quantity">quantity</label>
+                      <label for="quantity">{{ 'cart.carts.quantity' | translate }}</label>
                       <div class="input-group">
                         <i class="fas fa-caret-left" (click)="decreaseAmount(i, cart.name)"></i>
                         <input type="number" [value]="cart.amount" readonly #amount>
@@ -39,7 +43,7 @@
                       </div>
                     </div>
                   </td>
-                  <td>{{ (cart.priceAfterDiscount * cart.amount | currency) }}</td>
+                  <td>{{ (cart.priceAfterDiscount * cart.amount | currency:'EGP') }}</td>
                   <td><i class="fas fa-times" (click)="removeCart(cart._id)"></i></td>
                 </tr>
               </tbody>
@@ -48,37 +52,37 @@
               <div class="coupon">
                 <div class="coupon-input">
                   <i class="fas fa-gift"></i>
-                  <input type="text" placeholder="Coupon code">
+                  <input type="text" placeholder="{{ 'cart.carts.couponCode' | translate }}">
                 </div>
-                <button>apply coupon</button>
+                <button>{{ 'cart.carts.couponCodeBtn' | translate }}</button>
               </div>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-4">
           <div class="cart-total">
-            <h2 class="heading">cart totals</h2>
+            <h2 class="heading">{{ 'cart.total.totalHeading' | translate }}</h2>
             <ul>
               <li>
-                <h3>subtotal:</h3>
-                <span>{{ totalPrice | currency }}</span>
+                <h3>{{ 'cart.total.subTotal' | translate }}:</h3>
+                <span>{{ totalPrice | currency:'EGP' }}</span>
               </li>
               <li>
-                <h3>shipping:</h3>
+                <h3>{{ 'cart.total.shipping' | translate }}:</h3>
                 <span>free</span>
               </li>
             </ul>
             <ul>
               <li>
-                <h3>total</h3>
-                <span>{{ totalPrice | currency }}</span>
+                <h3>{{ 'cart.total.total' | translate }}</h3>
+                <span>{{ totalPrice | currency:'EGP' }}</span>
               </li>
             </ul>
-            <button routerLink="/order">proceed to checkout</button>
+            <button routerLink="/order">{{ 'cart.checkoutBtn' | translate }}</button>
           </div>
         </div>
       </div>
-      <div class="alert alert-info" *ngIf="carts?.length == 0">there is no carts</div>
+      <div class="alert alert-info" *ngIf="carts?.length == 0">{{ 'cart.noCarts' | translate }}</div>
     </div>
   </div>
 </div>

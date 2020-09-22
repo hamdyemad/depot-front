@@ -1,53 +1,63 @@
-<div class="order">
-  <app-bread-crumb [name]="'Orders'"></app-bread-crumb>
+<div class="order" #order>
+  <app-bread-crumb [name]="'order.order' | translate"></app-bread-crumb>
   <div class="order-info">
     <div class="container">
       <div class="row" *ngIf="carts?.length !== 0">
         <div class="col-12 col-lg-8">
           <nav aria-label="breadcrumb" class="main-bread-crumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item"><a routerLink="/cart">Cart</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Orders</li>
+              <li class="breadcrumb-item"><a routerLink="/">{{ 'order.breadCrumbBefore1' | translate }}</a></li>
+              <li class="breadcrumb-item"><a routerLink="/cart">{{ 'order.breadCrumbBefore2' | translate }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ 'order.breadCrumbActive' | translate }}</li>
             </ol>
           </nav>
           <form [formGroup]="orderForm" (ngSubmit)="onOrder()">
-            <h2 class="heading">Order Details</h2>
+            <h2 class="heading">{{ 'order.headingOrders' | translate }}</h2>
             <div class="form-group">
-              <label for="name">name</label>
+              <label for="name">{{ 'order.form.name' | translate }}</label>
               <input type="text" class="form-control" formControlName="clientName">
-              <div class="err" *ngIf="clientName().errors?.required && clientName().dirty">name is required</div>
+              <div class="err" *ngIf="clientName().errors?.required && clientName().dirty">
+                {{ 'order.form.validation.clientNameRequired' | translate }}
+              </div>
             </div>
             <div class="form-group">
-              <label for="address">address</label>
+              <label for="address">{{ 'order.form.address' | translate }}</label>
               <input type="text" class="form-control" formControlName="address">
-              <div class="err" *ngIf="address().errors?.required && address().dirty">address is required</div>
+              <div class="err" *ngIf="address().errors?.required && address().dirty">
+                {{ 'order.form.validation.addressRequired' | translate }}
+              </div>
             </div>
             <div class="form-group">
-              <label for="mobile">mobile</label>
+              <label for="mobile">{{ 'order.form.mobile' | translate }}</label>
               <input type="text" class="form-control" formControlName="mobile">
-              <div class="err" *ngIf="mobile().errors?.required && mobile().dirty">mobile is required</div>
-              <div class="err" *ngIf="mobile().errors?.pattern && mobile().dirty">write a mobile number only</div>
+              <div class="err" *ngIf="mobile().errors?.required && mobile().dirty">
+                {{ 'order.form.validation.mobileRequired' | translate }}
+              </div>
+              <div class="err" *ngIf="mobile().errors?.pattern && mobile().dirty">
+                {{ 'order.form.validation.numberFormat' | translate }}
+              </div>
             </div>
             <div class="form-group">
-              <label for="city">city</label>
+              <label for="city">{{ 'order.form.city' | translate }}</label>
               <select class="custom-select" formControlName="city">
                 <option value=""></option>
                 <option value="cairo">cairo</option>
                 <option value="alex">alex</option>
               </select>
-              <div class="err" *ngIf="city().errors?.required && city().dirty">city is required</div>
+              <div class="err" *ngIf="city().errors?.required && city().dirty">
+                {{ 'order.form.validation.cityRequired' | translate }}
+              </div>
             </div>
             <div class="form-group">
-              <label for="comment">comment</label>
+              <label for="comment">{{ 'order.form.comment' | translate }}</label>
               <textarea class="form-control" formControlName="comment"></textarea>
             </div>
             <div class="form-group about-confirm">
               <a routerLink="/cart">
                 <i class="fas fa-angle-left"></i>
-                <span>go to cart</span>
+                <span>{{ 'order.goToCartLink' | translate }}</span>
               </a>
-              <input type="submit" value="confirm order" [disabled]="orderForm.invalid">
+              <input type="submit" value="{{ 'order.confirmOrderBtn' | translate }}" [disabled]="orderForm.invalid">
             </div>
           </form>
         </div>
@@ -56,23 +66,26 @@
             <div class="cart-info" *ngFor="let cart of carts">
               <img [src]="url +'/' + cart.image" [alt]="cart.name">
               <div class="cart-details">
-                <h3>{{ cart.name }}</h3>
-                <h4>{{ cart.amount }} x {{ cart.priceAfterDiscount | currency }}</h4>
+                <h3 *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">{{ cart.name }}</h3>
+                <h3 *ngIf="translate.currentLang == 'ar'">{{ cart.nameAr }}</h3>
+                <h4 class="dir-ltr">{{ cart.amount }} x {{ cart.priceAfterDiscount | currency:'EGP' }}</h4>
               </div>
-              <h4 class="total-cart">{{ (cart.amount * cart.priceAfterDiscount | currency) }}</h4>
+              <h4 class="total-cart">{{ (cart.amount * cart.priceAfterDiscount | currency:'EGP') }}</h4>
             </div>
             <div class="flex-order">
-              <h3>shipping:</h3>
+              <h3>{{ 'order.orders.shipping' | translate }}:</h3>
               <h3>free</h3>
             </div>
             <div class="total-carts flex-order">
-              <h3>total:</h3>
-              <h3>{{ totalPrice | currency }}</h3>
+              <h3>{{ 'order.orders.total' | translate }}:</h3>
+              <h3>{{ totalPrice | currency:'EGP' }}</h3>
             </div>
           </div>
         </div>
       </div>
-      <div class="alert alert-info" *ngIf="carts?.length == 0">there is no carts to order</div>
+      <div class="alert alert-info" *ngIf="carts?.length == 0">
+        {{ 'order.noCarts' | translate }}
+      </div>
     </div>
   </div>
 </div>

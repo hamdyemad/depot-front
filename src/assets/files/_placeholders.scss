@@ -11,8 +11,10 @@
     background-color: var(--mainColor);
     .breadcrumb-item {
       color: #fff;
+      text-transform: capitalize;
       a {
         color: #fff;
+        text-transform: capitalize;
       }
       &.active {
         color: #eee;

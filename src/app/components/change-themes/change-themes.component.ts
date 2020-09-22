@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './../../services/color_service/theme.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChangeThemesComponent implements OnInit {
 
-  constructor(private _theme: ThemeService) { }
+  constructor(private _theme: ThemeService, private translate: TranslateService) { }
 
   ngOnInit(): void {
     let activeTheme = JSON.parse(localStorage.getItem('theme'));

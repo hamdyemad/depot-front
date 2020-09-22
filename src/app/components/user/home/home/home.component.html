@@ -10,8 +10,10 @@
       <div class="container">
         <div class="carousel-info {{carousel.class}}" *ngFor="let carousel of carousels">
           <div class="content">
-            <h1 [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">{{ carousel.header }}</h1>
-            <p [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">{{ carousel.paragraph }}</p>
+            <h1 [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">
+              {{ carousel.header | translate }}</h1>
+            <p [class]="carousel.class == 'activeCarousel' ? 'animated fadeInRight' : ''">
+              {{ carousel.paragraph | translate}}</p>
           </div>
           <div class="imgs">
             <img [class]="carousel.class == 'activeCarousel' ? 'animated fadeInUp' : ''" [src]="carousel.firstImgPath"
@@ -30,17 +32,19 @@
       <div class="filters">
         <div class="filter-by-link" [class]="categorys?.length > 8 ? 'activeScroll' : null">
           <ul>
-            <li routerLinkActive="activeLink" routerLink="/" [queryParams]="{category: 'all'}"><a>all</a></li>
+            <li routerLinkActive="activeLink" routerLink="/"
+              [queryParams]="{category: 'home.filters.category' | translate}">
+              <a>{{ 'home.filters.category' | translate }}</a></li>
             <li *ngFor="let category of categorys" routerLinkActive="activeLink" routerLink="/"
               [queryParams]="{category: category}"><a>{{ category }}</a></li>
           </ul>
         </div>
         <div class="filter-by-choose wow fadeIn" data-wow-offset="100">
           <ul>
-            <li><a>filter</a>
+            <li><a>{{ 'home.filters.filter' | translate }}</a>
               <div class="drop-down">
                 <ul>
-                  <li><a>sort by</a></li>
+                  <li><a>{{ 'home.filters.sort' | translate }}</a></li>
                   <li routerLinkActive="activeFilter" routerLink="" [queryParams]="{min: 0, max: 150}"><a>$0-$150</a>
                   </li>
                   <li routerLinkActive="activeFilter" routerLink="" [queryParams]="{min: 100, max: 1000}">
@@ -57,31 +61,45 @@
 
       <!--Start Products-->
       <div class="products">
-        <div class="alert alert-info animated fadeInDown" *ngIf="products?.length == 0">there is no products</div>
-        <div class="row justify-content-center" *ngIf="products?.length !== 0">
+        <div class="alert alert-info animated fadeInDown" *ngIf="products?.length == 0">
+          {{ 'home.noProducts' | translate }}
+        </div>
+        <div class="shimmers" *ngIf="isLoading">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let x of [1, 2, 3, 4, 5, 6, 7, 8]">
+              <div class="shimmer">
+                <ngx-shimmer-loading></ngx-shimmer-loading>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center" *ngIf="!isLoading">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3"
-            *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}">
+            *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}; index as i">
             <div class="product-info">
               <div class="img-info">
                 <img [src]="url +'/' + product.image" [alt]="product.name">
                 <div class="overlay">
                   <div class="status">
-                    <div class="status-info">new</div>
                     <span class="discount" *ngIf="product.price !== product.priceAfterDiscount">-
                       {{ (product.discount / 100 | percent) }}</span>
                   </div>
                   <div class="quick-look">
-                    <a [routerLink]="['product/', product._id, product.name]"><span>quick look</span></a>
+                    <a *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined"
+                      [routerLink]="['product/', product._id, product.name]"><span>{{ 'home.quicklook' | translate }}</span></a>
+                    <a *ngIf="translate.currentLang == 'ar'"
+                      [routerLink]="['product/', product._id, product.nameAr]"><span>{{ 'home.quicklook' | translate }}</span></a>
                   </div>
                 </div>
               </div>
               <div class="info">
-                <h1>{{ product.name }}</h1>
+                <h1 *ngIf="translate.currentLang =='en' || translate.currentLang == undefined">{{ product.name }}</h1>
+                <h1 *ngIf="translate.currentLang =='ar'">{{ product.nameAr }}</h1>
                 <div class="about-info">
-                  <a (click)="addToCart(product)">add to cart</a>
-                  <div class="prices">
-                    <del *ngIf="product.price !== product.priceAfterDiscount">{{ product.price |currency }}</del>
-                    <p>{{ product.priceAfterDiscount | currency }}</p>
+                  <a (click)="addToCart(product)">{{ 'home.addToCart' | translate }}</a>
+                  <div class="prices dir-ltr">
+                    <del *ngIf="product.price !== product.priceAfterDiscount">{{ product.price |currency:'EGP' }}</del>
+                    <p>{{ product.priceAfterDiscount | currency:'EGP' }}</p>
                   </div>
                 </div>
               </div>

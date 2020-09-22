@@ -1,0 +1,159 @@
+{
+  "navbar": {
+    "logo": "DEPOT",
+    "link1": {
+      "main": "home",
+      "subLink1": "main home",
+      "subLink2": "minimal home",
+      "subLink3": "classic home"
+    },
+    "link2": "shop",
+    "link3": "pages",
+    "loginAndregisterLink": {
+      "login": "login",
+      "register": "register",
+      "username": "username",
+      "email": "email",
+      "password": "password",
+      "confirmPassword": "Confirm Password",
+      "remeber": "remember me",
+      "lostPassword": "lost your password?",
+      "validation": {
+        "usernameRequired": "username is required",
+        "emailRequired": "email is required",
+        "emailFormat": "write an email format",
+        "passwordRequired": "password is required",
+        "passwordLength": "write at least",
+        "confirmPassword": "your password doesn't match"
+      }
+    },
+    "cart": {
+      "cart": "cart",
+      "noCart": "there is no carts",
+      "total": "total",
+      "viewCartBtn": "view cart",
+      "checkoutBtn": "checkout"
+    },
+    "orders": "orders",
+    "logout": "logout"
+  },
+  "changeTheme": "choose your favourite color :)",
+  "home": {
+    "carousel": {
+      "header": "contemporary design.",
+      "paragraph": "a large set of beautiful fully flexible homepage layouts lets you create your website quickly and easily"
+    },
+    "filters": {
+      "category": "all",
+      "filter": "filter",
+      "sort": "sort by"
+    },
+    "quicklook": "quick look",
+    "addToCart": "add to cart",
+    "noProducts": "there is no products",
+    "main": "home"
+  },
+  "productInfo": {
+    "quantity": "quantity",
+    "addToCart": "add to cart",
+    "code": "code",
+    "category": "category"
+  },
+  "footer": {
+    "customerService": {
+      "mainContent": "customer service",
+      "help": "help & contact us",
+      "returns": "returns & refunds",
+      "terms": "Terms & Conditions"
+    },
+    "company": {
+      "mainContent": "company",
+      "whatWeDo": "what we do",
+      "faqs": "faqs"
+    },
+    "socialMedia": {
+      "mainContent": "social media",
+      "facebook": "facebook",
+      "instagram": "instagram",
+      "linkedin": "linkedin"
+    },
+    "profileInfo": {
+      "mainContent": "profile",
+      "account": "my account",
+      "checkout": "checkout",
+      "orderTracking": "order tracking"
+    }
+  },
+  "cart": {
+    "cart": "cart",
+    "breadCrumbBefore": "home",
+    "breadCrumbActive": "cart",
+    "headingCart": "shopping cart",
+    "carts": {
+      "image": "image",
+      "name": "name",
+      "price": "price",
+      "quantity": "quantity",
+      "total": "total",
+      "couponCode": "coupon code",
+      "couponCodeBtn": "apply coupon"
+    },
+    "total": {
+      "totalHeading": "cart totals",
+      "subTotal": "subtotal",
+      "shipping": "shipping",
+      "total": "total"
+    },
+    "checkoutBtn": "proceed to checkout",
+    "noCarts": "there is no carts"
+  },
+  "order": {
+    "order": "orders",
+    "breadCrumbBefore1": "home",
+    "breadCrumbBefore2": "cart",
+    "breadCrumbActive": "orders",
+    "headingOrders": "order details",
+    "form": {
+      "name": "name",
+      "address": "address",
+      "mobile": "mobile",
+      "city": "city",
+      "comment": "comment",
+      "validation": {
+        "clientNameRequired": "name is required",
+        "addressRequired": "address is required",
+        "mobileRequired": "mobile is required",
+        "numberFormat": "write a mobile number only",
+        "cityRequired": "city is required"
+      }
+    },
+    "goToCartLink": "go to cart",
+    "confirmOrderBtn": "confirm order",
+    "orders": {
+      "shipping": "shipping",
+      "total": "total"
+    },
+    "noCarts": "there is no carts to order"
+  },
+  "orderTracking": {
+    "breadCrumbBefore1": "home",
+    "breadCrumbActive": "order-tracking",
+    "noOrders": "there is no orders",
+    "labels": {
+      "newOrders": "new orders",
+      "completedOrders": "completed orders"
+    },
+    "tracking": {
+      "orderNumber": "order number",
+      "shippingBy": "shipping by",
+      "status": "status",
+      "deliveryTime": "Estimated Delivery Time",
+      "statuses": {
+        "pending": "pending",
+        "processing": "processing",
+        "shipped": "shipped",
+        "delivered": "delivered"
+      }
+    }
+  }
+}

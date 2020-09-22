@@ -23,6 +23,7 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
   @ViewChild('img', { static: true }) img: ElementRef;
   imageEle: HTMLImageElement;
   categorys: Array<string>;
+  categorysAr: Array<string>;
   editForm: FormGroup;
   fileList: FileList;
   constructor(
@@ -33,8 +34,6 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // Get All Categorys
-    this.getAllCategorys();
     this.route.paramMap.subscribe(params => {
       if (params.keys.length !== 0) {
         let id = params.get('id');
@@ -42,10 +41,20 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
           if (res.type == HttpEventType.Response) {
             console.log(res);
             this.product = res.body;
+            // Get All Categorys
+            this.getAllCategorys(res.body.category, res.body.categoryAr);
             this.imageEle = (this.img.nativeElement);
             this.imageEle.src = `http://localhost:3000/${this.product.image}`;
             // Update Form
-            this.updateForm(res.body.name, res.body.description, res.body.category, res.body.price, res.body.discount);
+            this.updateForm(
+              res.body.name,
+              res.body.description,
+              res.body.category,
+              res.body.nameAr,
+              res.body.descriptionAr,
+              res.body.categoryAr,
+              res.body.price,
+              res.body.discount);
           }
         })
       }
@@ -61,24 +70,28 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      nameAr: ['', Validators.required],
+      descriptionAr: ['', Validators.required],
+      categoryAr: ['', Validators.required],
       price: ['', Validators.required],
       discount: ['', [Validators.max(100)]]
     })
   }
 
   // Update Form
-  updateForm(name, description, category, price, discount) {
+  updateForm(name, description, category, nameAr, descriptionAr, categoryAr, price, discount) {
     this.editForm.patchValue({
-      name, description, category, price, discount
+      name, description, category, nameAr, descriptionAr, categoryAr, price, discount
     })
   }
 
   // Get All Categors
 
-  getAllCategorys() {
+  getAllCategorys(activeCategory: string, activeCategoryAr: string) {
+    console.log(activeCategory, activeCategoryAr)
     this._products.getAllCategorys().subscribe(res => {
-      this.categorys = res[0]._categorys;
-      console.log(res)
+      this.categorys = res[0]._categorys.filter(filter => filter !== activeCategory);
+      this.categorysAr = res[0]._categorysAr.filter(filter => filter !== activeCategoryAr);
     })
   }
 
@@ -91,6 +104,15 @@ export class UpdateProductComponent implements OnInit, OnDestroy {
   }
   category() {
     return this.editForm.controls.category
+  }
+  nameAr() {
+    return this.editForm.controls.nameAr
+  }
+  descriptionAr() {
+    return this.editForm.controls.descriptionAr
+  }
+  categoryAr() {
+    return this.editForm.controls.categoryAr
   }
   price() {
     return this.editForm.controls.price

@@ -34,6 +34,9 @@ export class AddProductComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      nameAr: ['', Validators.required],
+      descriptionAr: ['', Validators.required],
+      categoryAr: ['', Validators.required],
       price: ['', Validators.required],
       image: ['', Validators.required],
       discount: [0, [Validators.max(100)]]
@@ -50,6 +53,17 @@ export class AddProductComponent implements OnInit {
   category() {
     return this.addForm.controls.category
   }
+  // Arabic
+  nameAr() {
+    return this.addForm.controls.nameAr
+  }
+  descriptionAr() {
+    return this.addForm.controls.descriptionAr
+  }
+  categoryAr() {
+    return this.addForm.controls.categoryAr
+  }
+  // Arabic
   price() {
     return this.addForm.controls.price
   }
@@ -74,7 +88,6 @@ export class AddProductComponent implements OnInit {
   onSubmit() {
     let formValue = this.addForm.value;
     this.fileList = this.file.nativeElement.files;
-
     this._products.addNewProduct(this.fileList[0], formValue).subscribe(res => {
       console.log(res);
       this.toastr.success('has been added', formValue.name);

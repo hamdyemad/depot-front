@@ -1,8 +1,10 @@
+import { TranslateDetectionService } from './../../../services/translate_service/translate-detection.service';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { OrderService } from './../../../services/order_service/order.service';
 import { CartService } from './../../../services/cart_service/cart.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Carts } from '../../../models/carts.model';
 import { Router } from '@angular/router';
 import { environment as env } from '../../../../environments/environment';
@@ -14,6 +16,7 @@ import { environment as env } from '../../../../environments/environment';
 })
 export class OrderComponent implements OnInit {
 
+  @ViewChild('order', { static: true }) order: ElementRef;
   carts: Carts[];
   totalPrice: number;
   orderForm: FormGroup;
@@ -22,9 +25,12 @@ export class OrderComponent implements OnInit {
     private fb: FormBuilder, private _cart: CartService,
     private _order: OrderService,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    public translate: TranslateService,
+    private _translate: TranslateDetectionService) { }
 
   ngOnInit(): void {
+    this._translate.changeStyle(this.order)
     // Fire Get All Carts
     this.getAllCarts();
     // this._cart.cartSubscription.subscribe(() => {
@@ -48,7 +54,7 @@ export class OrderComponent implements OnInit {
   getAllCarts() {
     this._cart.getAllCarts().subscribe((res: Carts[]) => {
       this.carts = res;
-
+      console.log(this.carts);
       if (this.carts.length !== 0) {
         let totalPrice = this.carts.map((cart) => {
           return cart.amount * cart.priceAfterDiscount
@@ -86,7 +92,11 @@ export class OrderComponent implements OnInit {
         console.log(res);
         this._cart.removeAllCart().subscribe((res) => {
           console.log(res);
-          this.toastr.success('your order has been confirmed', formValue.clientName)
+          if (this.translate.currentLang == 'ar') {
+            this.toastr.success('لقد تم تنفيذ طلبك', formValue.clientName)
+          } else {
+            this.toastr.success('your order has been confirmed', formValue.clientName)
+          }
           this.router.navigate(['/']);
         })
       });

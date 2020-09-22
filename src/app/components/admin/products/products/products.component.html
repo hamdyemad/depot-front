@@ -69,7 +69,7 @@
               <th>{{ product.seq}}</th>
               <th><img [src]="url +'/' + product.image" [alt]="product.name"></th>
               <td>{{ product.name }}</td>
-              <td>{{ product.priceAfterDiscount | currency }}</td>
+              <td>{{ product.priceAfterDiscount | currency:'EGP' }}</td>
               <td>{{ product.addedDate | date }}</td>
               <td>
                 <ul class="options">

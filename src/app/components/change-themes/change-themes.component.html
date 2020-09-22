@@ -1,7 +1,7 @@
 <div class="change-theme" #changeTheme>
   <i class="fas fa-angle-left" (click)="toggleChangeTheme(changeTheme)"></i>
   <div class="box">
-    <h4>choose your favourite color ;)</h4>
+    <h4>{{ 'changeTheme' | translate }}</h4>
     <ul>
       <li (click)="setBlue()"></li>
       <li (click)="setGreen()"></li>

@@ -100,7 +100,7 @@
               <td>{{ order.clientName }}</td>
               <td>{{ order.city}}</td>
               <td>{{ order.status }}</td>
-              <td>{{totalPrice(i, orders) | currency}}</td>
+              <td>{{totalPrice(i, orders) | currency:'EGP'}}</td>
               <td>{{ order.dateAdded | date }}</td>
               <td>
                 <ul class="options">

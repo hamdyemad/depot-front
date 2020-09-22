@@ -1,101 +1,139 @@
 @import "../../../../assets/files/placeholders";
+
 .product {
   padding: 40px 0;
+
   .image-info {
     img {
       width: 100%;
     }
+
     @media(max-width: 991px) {
       text-align: center;
+
       img {
         width: 300px;
         height: 300px;
       }
     }
   }
+
   .product-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 100%;
+
     @media(max-width: 991px) {
       text-align: center;
     }
+
     .name {
       @media(max-width: 991px) {
         margin-top: 20px;
       }
     }
-    .name,.price {
+
+    .price {
+      margin-bottom: 0;
+    }
+
+    .name,
+    .price {
       text-transform: capitalize;
-      @media(max-width: 767px) {
-        font-size: 18px
-      }
     }
-    .reviews {
-      i {
-        margin-right: 5px;
-        @media(max-width: 767px) {
 
-    font-size: 18px;
-
-        }
-      }
-    }
     .description {
       margin-top: 40px;
       color: var(--secColor);
+
       @media(max-width: 767px) {
         margin-top: 20px;
         font-size: 13px;
       }
     }
+
     .other-info {
       margin-top: 10px;
+
       li {
         text-transform: capitalize;
         color: var(--secColor);
+
         span {
           color: var(--mainColor);
         }
+
         a {
           color: var(--secColor);
         }
       }
     }
   }
+
   .group {
     margin: 25px 0px;
     display: flex;
     align-items: center;
+
     @media(max-width: 991px) {
       justify-content: center;
     }
+
     .input-info {
       @extend %inputGroup;
       width: 50%;
       border-radius: 0;
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
+
       @media(max-width: 767px) {
         width: auto;
       }
     }
+
     button {
       @extend %mainButton;
       border-radius: 0;
-    padding: 16px 10px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    font-size: 12px;
-    border-radius: 0;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    @media(max-width: 767px) {
-      padding: 5px 10px;
-      font-size: 10px;
+      padding: 16px 10px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-size: 16px;
+      border-radius: 0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      @media(max-width: 767px) {
+        padding: 5px 10px;
+        font-size: 10px;
+      }
     }
+  }
+}
+
+
+.right {
+  .group {
+    .input-info {
+      .fa-caret-left {
+        order: 3;
+      }
+
+      input {
+        order: 2;
+      }
+
+      .fa-caret-right {
+        order: 1;
+      }
+    }
+
+    button {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
     }
   }
 }

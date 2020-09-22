@@ -33,6 +33,9 @@ export class ProductsService {
     fd.append('name', body.name)
     fd.append('description', body.description)
     fd.append('category', body.category)
+    fd.append('nameAr', body.nameAr)
+    fd.append('descriptionAr', body.descriptionAr)
+    fd.append('categoryAr', body.categoryAr)
     fd.append('price', body.price)
     fd.append('discount', body.discount)
     if (imageFile !== undefined) {
@@ -73,10 +76,17 @@ export class ProductsService {
 
   addNewProduct(file: File, body) {
     let fd = new FormData();
-    fd.append('image', file, file.name);
+    // English
     fd.append('name', body.name);
     fd.append('description', body.description);
     fd.append('category', body.category);
+    // English
+    // Arabic
+    fd.append('nameAr', body.nameAr);
+    fd.append('descriptionAr', body.descriptionAr);
+    fd.append('categoryAr', body.categoryAr);
+    // Arabic
+    fd.append('image', file, file.name);
     fd.append('price', body.price);
     fd.append('discount', body.discount);
     return this.http.post<any>(`${DB_URL}/products`, fd);

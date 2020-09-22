@@ -1,2 +1,4 @@
-<router-outlet></router-outlet>
-<app-change-themes></app-change-themes>
+<div #main [class]="currentLang == 'ar' ? 'rtl' : null">
+  <router-outlet></router-outlet>
+  <app-change-themes></app-change-themes>
+</div>

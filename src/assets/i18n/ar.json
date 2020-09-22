@@ -1,0 +1,159 @@
+{
+  "navbar": {
+    "logo": "مستودع",
+    "link1": {
+      "main": "الرئيسية",
+      "subLink1": "الرئيسية",
+      "subLink2": "الرئيسية الصغيرة",
+      "subLink3": "الرئيسية الكلاسيكية"
+    },
+    "link2": "التسوق",
+    "link3": "الصفحات",
+    "loginAndregisterLink": {
+      "login": "تسجيل الدخول",
+      "register": "التسجيل",
+      "username": "الاسم",
+      "email": "الايميل",
+      "password": "الرقم السري",
+      "confirmPassword": "تأكيد الرقم السري",
+      "remeber": "تذكرني عند الدخول",
+      "lostPassword": "نسيت الرقم السري؟",
+      "validation": {
+        "usernameRequired": "الاسم مطلوب",
+        "emailRequired": "الايميل مطلوب",
+        "emailFormat": "يجب كتابة صيغة الايميل",
+        "passwordRequired": "الرقم السري مطلوب",
+        "passwordLength": "اكتب على الاقل",
+        "confirmPassword": "الرقم السري غير مطابق"
+      }
+    },
+    "cart": {
+      "cart": "السلة",
+      "noCart": "لا يوجد طلبات",
+      "total": "المجموع",
+      "viewCartBtn": "اذهب للسلة",
+      "checkoutBtn": "اتمام الطلبات"
+    },
+    "orders": "الطلبات",
+    "logout": "تسجيل الخروج"
+  },
+  "changeTheme": "اختر اللون الذي يليق بك :)",
+  "home": {
+    "carousel": {
+      "header": "التصميم المعاصر.",
+      "paragraph": "تتيح لك مجموعة كبيرة من تخطيطات الصفحة الرئيسية المرنة بالكامل إنشاء موقع الويب الخاص بك بسرعة وسهولة"
+    },
+    "filters": {
+      "category": "الكل",
+      "filter": "الترشيحات",
+      "sort": "صنف حسب"
+    },
+    "quicklook": "نظرة سريعة",
+    "addToCart": "اضف الى السلة",
+    "noProducts": "لا يوجد منتجات",
+    "main": "الرئيسية"
+  },
+  "productInfo": {
+    "quantity": "الكمية",
+    "addToCart": "اضف الى السلة",
+    "code": "كود المنتج",
+    "category": "الصنف"
+  },
+  "footer": {
+    "customerService": {
+      "mainContent": "الدعم الفنى",
+      "help": "المساعدة والاتصال بنا",
+      "returns": "سياسة المرتجعات و التبديلات",
+      "terms": "سياسة المنتج الجزئي"
+    },
+    "company": {
+      "mainContent": "عن الشركة",
+      "whatWeDo": "ماذا نفعل؟",
+      "faqs": "الأهتمامات"
+    },
+    "socialMedia": {
+      "mainContent": "وسائل التواصل الأجتماعى",
+      "facebook": "فيس بوك",
+      "instagram": "الانستجرام",
+      "linkedin": "لينكدن"
+    },
+    "profileInfo": {
+      "mainContent": "عنى",
+      "account": "الأكونت الخاص بي",
+      "checkout": "الطلبات",
+      "orderTracking": "متابعة طلبى"
+    }
+  },
+  "cart": {
+    "cart": "السلة",
+    "breadCrumbBefore": "الرئيسية",
+    "breadCrumbActive": "السلة",
+    "headingCart": "عربة التسوق",
+    "carts": {
+      "image": "الصورة",
+      "name": "الأسم",
+      "price": "السعر",
+      "quantity": "الكمية",
+      "total": "المجموع",
+      "couponCode": "كود الخصم",
+      "couponCodeBtn": "فعل كود الخصم"
+    },
+    "total": {
+      "totalHeading": "اجمالى سلة التسوق",
+      "subTotal": "المجموع الفرعى",
+      "shipping": "الشحن",
+      "total": "المجموع"
+    },
+    "checkoutBtn": "اذهب للدفع",
+    "noCarts": "لا يوجد منتجات بالسلة"
+  },
+  "order": {
+    "order": "الطلبات",
+    "breadCrumbBefore1": "الرئيسية",
+    "breadCrumbBefore2": "السلة",
+    "breadCrumbActive": "الطلبات",
+    "headingOrders": "معلومات الطلب",
+    "form": {
+      "name": "الأسم",
+      "address": "العنوان",
+      "mobile": "رقم الموبيل",
+      "city": "المدينة",
+      "comment": "التعليق",
+      "validation": {
+        "clientNameRequired": "الأسم مطلوب",
+        "addressRequired": "العنوان مطلوب",
+        "mobileRequired": "رقم الموبيل مطلوب",
+        "numberFormat": "برجاء كتابة رقم الموبيل فقط",
+        "cityRequired": "المدينة مطلوب"
+      }
+    },
+    "goToCartLink": "اذهب للسلة",
+    "confirmOrderBtn": "تأكيد الطلب",
+    "orders": {
+      "shipping": "الشحن",
+      "total": "المجموع"
+    },
+    "noCarts": "لا يوجد منجات في السلة لأكمال الطلب"
+  },
+  "orderTracking": {
+    "breadCrumbBefore1": "الرئيسية",
+    "breadCrumbActive": "تتبع الطلبات",
+    "noOrders": "لا يوجد طلبات",
+    "labels": {
+      "newOrders": "الطلبات الجديدة",
+      "completedOrders": "الطلبات التى تمت"
+    },
+    "tracking": {
+      "orderNumber": "رقم الطلب",
+      "shippingBy": "الشحن عن طريق",
+      "status": "الحالة",
+      "deliveryTime": "يقدر وقت التسليم",
+      "statuses": {
+        "pending": "قيد الانتظار",
+        "processing": "تحت المعالجة",
+        "shipped": "تم الشحن",
+        "delivered": "تم التوصيل"
+      }
+    }
+  }
+}

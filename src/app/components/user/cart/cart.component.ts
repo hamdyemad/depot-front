@@ -1,9 +1,12 @@
+import { TranslateDetectionService } from './../../../services/translate_service/translate-detection.service';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Carts } from './../../../models/carts.model';
 import { CartService } from './../../../services/cart_service/cart.service';
 import { environment as env } from '../../../../environments/environment';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -12,15 +15,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
+  @ViewChild('cart', { static: true }) cart: ElementRef
   totalPrice: number;
   carts: Carts[];
   url = env.DB_URL;
-  constructor(private _cart: CartService, private toastr: ToastrService) { }
+  constructor(private _cart: CartService, private toastr: ToastrService, public translate: TranslateService, private _translate: TranslateDetectionService) { }
 
   $(ele) {
     return document.querySelector(ele);
   }
   ngOnInit(): void {
+    this._translate.changeStyle(this.cart);
     this.getAllCarts$();
     this.getAllCarts();
   }

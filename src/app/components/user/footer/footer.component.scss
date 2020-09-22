@@ -19,18 +19,7 @@ footer {
       li {
         position: relative;
         cursor: pointer;
-
         padding: 5px 0;
-
-        &:hover {
-          i {
-            left: 0 !important;
-            opacity: 1;
-          }
-          a {
-            padding-left: 20px !important;
-          }
-        }
         i {
           transition: all 0.3s ease-in-out;
           margin-right: 5px;
@@ -47,6 +36,15 @@ footer {
           transition: all 0.3s ease-in-out;
           text-decoration: none;
         }
+        &:hover {
+          i {
+            left: 0;
+            opacity: 1;
+          }
+          a {
+            padding-left: 20px;
+          }
+        }
       }
     }
   }
@@ -55,6 +53,28 @@ footer {
     .text {
       text-align: center;
       color: var(--secColor);
+    }
+  }
+}
+
+.right {
+  ul {
+    li {
+      i {
+        left: auto !important;
+        right: -20px !important;
+        transform: translateY(-50%) rotate(180deg) !important;
+      }
+      &:hover {
+        i {
+          left: auto !important;
+          right: 0 !important;
+        }
+        a {
+          padding-left: 0px !important;
+          padding-right: 20px !important;
+        }
+      }
     }
   }
 }

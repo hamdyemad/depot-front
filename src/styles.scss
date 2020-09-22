@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./assets/files/variables";
 @import "./assets/files/placeholders";
 @import "./assets/files/animate.css";
@@ -8,17 +7,24 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Alata", sans-serif;
-  @media(max-width: 776px) {
-    font-size: 12px;
-  }
+  font-size: 16px;
+
   &:focus {
     outline: none;
   }
+
+  font-family: 'Tajawal',
+  sans-serif;
+}
+
+
+.dir-ltr {
+  direction: ltr;
 }
 
 .alert {
   background-color: var(--mainColor);
+  border-color: var(--mainColor);
   color: #fff;
 }
 
@@ -28,10 +34,12 @@ button {
     outline: none;
   }
 }
+
 body {
   color: var(--mainColor);
   overflow-x: hidden;
 }
+
 ul {
   padding: 0;
   margin: 0;
@@ -40,7 +48,7 @@ ul {
 
 ::-webkit-scrollbar {
   background-color: var(--mainColor);
-  width: 5px;
+  width: 10px;
   height: 5px;
   border-radius: 20px;
 }
@@ -61,6 +69,7 @@ ul {
   pagination-template {
     ul {
       text-align: center !important;
+
       li {
         a {
           &:hover {
@@ -68,6 +77,7 @@ ul {
             color: #fff !important;
           }
         }
+
         &.current {
           background-color: var(--mainColor) !important;
         }

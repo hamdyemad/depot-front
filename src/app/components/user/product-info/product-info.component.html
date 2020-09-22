@@ -1,24 +1,29 @@
-<app-bread-crumb [name]="product?.name"></app-bread-crumb>
-<div class="product">
+<app-bread-crumb *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined" [name]="product?.name">
+</app-bread-crumb>
+<app-bread-crumb *ngIf="translate.currentLang == 'ar'" [name]="product?.nameAr"></app-bread-crumb>
+<div class="product" #mainProduct>
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-6">
-        <div class="image-info animated fadeInLeft">
+        <div class="image-info animated"
+          [class]="translate.currentLang == 'en' || translate.currentLang == undefined ? 'fadeInLeft' : 'fadeInRight'">
           <img *ngIf="product?.image" [src]="url +'/' + product.image" [alt]="product?.name">
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <div class="product-info" [class]="mobile ? 'animated fadeInLeft' : 'animated fadeInRight'">
-          <h1 class="name">Lorem ipsum dolor sit amet consectetu</h1>
-          <h2 class="price">{{ product?.priceAfterDiscount | currency }}</h2>
-          <div class="reviews">
-            <i class="fas fa-star" *ngFor="let start of reviewsArr"></i>
-            <i class="far fa-star" *ngFor="let start of nonReview"></i>
-          </div>
-          <p class="description">{{ product?.description }}</p>
+        <div class="product-info animated"
+          [class]="translate.currentLang == 'en' || translate.currentLang == undefined ? 'fadeInRight' : 'fadeInLeft'">
+          <h1 class="name" *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">
+            {{ product?.name }}</h1>
+          <h1 class="name" *ngIf="translate.currentLang == 'ar'">{{ product?.nameAr }}</h1>
+          <h2 class="price">{{ product?.priceAfterDiscount | currency:'EGP' }}</h2>
+          <del class="price">{{ product?.price | currency:'EGP' }}</del>
+          <p class="description" *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">
+            {{ product?.description }}</p>
+          <p class="description" *ngIf="translate.currentLang == 'ar'">{{ product?.descriptionAr }}</p>
           <div class="group">
             <div class="input-info">
-              <label for="quantity">quantity</label>
+              <label for="{{ 'productInfo.quantity' | translate }}">{{ 'productInfo.quantity' | translate }}</label>
               <div class="input-group">
                 <i class="fas fa-caret-left" (click)="decreaseAmount()"></i>
                 <input type="number" [value]="amount" readonly>
@@ -26,14 +31,17 @@
               </div>
             </div>
             <button (click)="addToCart()">
-              add to cart
+              {{ 'productInfo.addToCart' | translate }}
             </button>
           </div>
           <div class="other-info">
             <ul>
-              <li><span>code: </span>{{ product?.seq }}</li>
-              <li><span>category: </span> <a routerLink="/"
+              <li><span>{{ 'productInfo.code' | translate }}: </span>{{ product?.seq }}</li>
+              <li *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">
+                <span>{{ 'productInfo.category' | translate }}: </span> <a routerLink="/"
                   [queryParams]="{category: product?.category}">{{ product?.category }}</a></li>
+              <li *ngIf="translate.currentLang == 'ar'"><span>{{ 'productInfo.category' | translate }}: </span> <a
+                  routerLink="/" [queryParams]="{category: product?.categoryAr}">{{ product?.categoryAr }}</a></li>
             </ul>
           </div>
         </div>

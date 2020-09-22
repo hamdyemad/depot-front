@@ -5,6 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NgwWowModule } from 'ngx-wow';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TranslateModule } from '@ngx-translate/core';
+import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -12,7 +14,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CommonModule,
     HomeRoutingModule,
     NgwWowModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    TranslateModule,
+    NgxShimmerLoadingModule
   ]
 })
 export class HomeModule { }

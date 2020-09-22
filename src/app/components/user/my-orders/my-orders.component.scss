@@ -1,24 +1,31 @@
 @import "../../../../assets/files/placeholders";
+
 .my-orders {
-  padding:60px 0;
+  padding: 60px 0;
+
   .main-bread-crumb {
     @extend %breadCrumbLinks;
   }
 
   .tracking {
     margin: 40px 0;
+    padding: 0px 10px;
+
     .deleviry-info {
       text-transform: capitalize;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       @media(max-width: 767px) {
         flex-direction: column;
         text-align: center;
+
         li {
           &:not(:last-child) {
             margin-bottom: 20px;
           }
+
           h4 {
             margin-bottom: 5px;
           }
@@ -28,31 +35,34 @@
       h4 {
         font-weight: bold;
         letter-spacing: .5px;
-    font-size: 16px;
+        font-size: 16px;
       }
     }
+
     .info {
       margin: 20px 0;
+
       .track {
         text-align: center;
         display: flex;
         justify-content: space-between;
+
         @media(max-width: 767px) {
           flex-direction: column;
           height: 500px;
           align-items: center;
         }
+
         li {
           text-transform: capitalize;
           position: relative;
-          background: #fff;
-          &:not(.active) {
-            z-index: -1;
-          }
+
           .icon {
+            background: #fff;
             position: relative;
             width: 70px;
-          height: 70px;
+            height: 70px;
+
             i {
               border-radius: 50%;
               color: var(--secColor);
@@ -64,50 +74,61 @@
               height: 100%;
             }
           }
+
           span {
-            margin-top: 5px;
-            display: block;
+            position: absolute;
+            bottom: -40%;
+            left: 50%;
+            transform: translateX(-50%);
+            height: max-content;
+            width: max-content;
+
             @media(max-width: 767px) {
-              position: absolute;
-              left: -100%;
-            margin-top: 0px;
+              left: -130%;
               top: 50%;
               transform: translateY(-50%);
             }
           }
+
           &:not(:first-child) {
             .icon {
               &:before {
                 background-color: var(--secColor);
+                z-index: -1;
                 content: "";
-                  position: absolute;
-                  right: 100%;
-                  top: 50%;
-                  transform: translateY(-50%);
-                  width: calc(100% * 4);
-                  height: 10px;
-                  @media(min-width: 992px) and (max-width: 1199px) {
-                    width: calc(79% * 4);
-                  }
-                  @media(min-width: 768px) and (max-width: 991px) {
-                    width: calc(50% * 4);
-                  }
-                  @media(max-width: 767px) {
-                    top: -75px;
-                    right: 50%;
-                    transform: translateX(50%);
-                    width: 10px;
-                    height: 76px;
-                  }
+                position: absolute;
+                right: 100%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: calc(100% * 4);
+                height: 10px;
+
+                @media(min-width: 992px) and (max-width: 1199px) {
+                  width: calc(79% * 4);
+                }
+
+                @media(min-width: 768px) and (max-width: 991px) {
+                  width: calc(50% * 4);
+                }
+
+                @media(max-width: 767px) {
+                  top: -75px;
+                  right: 50%;
+                  transform: translateX(50%);
+                  width: 10px;
+                  height: 76px;
+                }
               }
             }
           }
+
           &.active {
             .icon {
               i {
-              border: 5px solid var(--mainColor) !important;
-              color: var(--mainColor);
+                border: 5px solid var(--mainColor) !important;
+                color: var(--mainColor);
               }
+
               &:before {
                 background-color: var(--mainColor);
               }
@@ -117,20 +138,26 @@
         }
       }
     }
+
     .products-of-orders {
-      margin: 20px 0;
+      margin: 60px 0;
+
       ul {
         display: flex;
         align-items: center;
+
         @media(max-width: 767px) {
           flex-direction: column;
         }
+
         li {
           display: flex;
           align-items: center;
+
           &:not(:last-child) {
             margin-right: 10px;
           }
+
           .image {
             img {
               width: 70px;
@@ -138,9 +165,11 @@
               height: 70px;
             }
           }
+
           .content {
             margin-left: 10px;
             text-transform: capitalize;
+
             h2 {
               margin-bottom: 5px;
             }
@@ -148,10 +177,12 @@
         }
       }
     }
+
     .svgs {
       svg {
         width: 400px;
         height: 300px;
+
         @media(max-width: 767px) {
           width: 200px;
           height: 200px;
@@ -167,14 +198,86 @@
     background-color: var(--mainColor) !important;
     opacity: 0.2;
   }
+
   mat-tab-header {
     .mat-tab-label-container {
       .mat-tab-label-content {
         color: var(--mainColor);
       }
     }
+
     mat-ink-bar {
       background-color: var(--mainColor) !important;
+    }
+  }
+}
+
+
+// On
+.right {
+  .info {
+    .track {
+      li {
+        span {
+          @media(max-width: 767px) {
+            right: -160% !important;
+          }
+        }
+
+        &:not(:first-child) {
+          .icon {
+            &:before {
+              left: 100% !important;
+              right: auto !important;
+
+              @media(max-width: 767px) {
+                right: 50% !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .products-of-orders {
+    margin: 60px 0;
+
+    ul {
+      display: flex;
+      align-items: center;
+
+      @media(max-width: 767px) {
+        flex-direction: column;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+
+        &:not(:last-child) {
+          margin-right: 0px;
+          margin-left: 10px;
+        }
+
+        .image {
+          img {
+            width: 70px;
+            border-radius: 50%;
+            height: 70px;
+          }
+        }
+
+        .content {
+          margin-left: 0px;
+          margin-right: 10px;
+          text-transform: capitalize;
+
+          h2 {
+            margin-bottom: 5px;
+          }
+        }
+      }
     }
   }
 }

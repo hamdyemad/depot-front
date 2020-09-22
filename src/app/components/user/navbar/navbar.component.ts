@@ -1,3 +1,4 @@
+import { TranslateDetectionService } from './../../../services/translate_service/translate-detection.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductsService } from './../../../services/products_service/products.service';
@@ -8,6 +9,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Carts } from '../../../models/carts.model';
 import { environment as env } from '../../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChildren('cartInfoChildren') cartInfoChildren: QueryList<any>;
   @ViewChild('cartInfo') cartInfo: ElementRef;
+  @ViewChild('header') header: ElementRef;
   minWeb = matchMedia('(min-width: 991px)');
   maxMobile = matchMedia('(max-width: 991px)');
   url = env.DB_URL;
@@ -34,7 +37,9 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     private fb: FormBuilder, public _auth: AuthService,
     private toastr: ToastrService,
     private _cart: CartService,
-    private router: Router) { }
+    private router: Router,
+    public translate: TranslateService,
+    public _translate: TranslateDetectionService) { }
 
   $(ele) {
     return document.querySelector(ele);
@@ -85,7 +90,14 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  changeLang(selectBox: HTMLSelectElement) {
+    this.translate.use(selectBox.value);
+  }
+
   ngAfterViewInit() {
+    this._translate.changeStyle(this.header);
+
+
     this.cartInfoChildren.changes.subscribe(() => {
       if (this.cartInfo !== undefined) {
         let cartInfo = (this.cartInfo.nativeElement as HTMLDivElement);
@@ -154,7 +166,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
         this.emailMessage = '';
         this.passwordMessage = '';
         this._auth.setToken(res.access_token, res.role);
-        this.toastr.success('has logged in', formValue.email);
+        if (this.translate.currentLang == 'ar') {
+          this.toastr.success('تم تسجيل دخولك', formValue.email);
+        } else {
+          this.toastr.success('has logged in', formValue.email);
+        }
         if (res.role == 'admin') {
           this.router.navigate(['/admin'])
         }
@@ -172,7 +188,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
   // Logout
   logOut() {
     this._auth.logOut().then(() => {
-      this.toastr.error('you are logged out');
+      if (this.translate.currentLang == 'ar') {
+        this.toastr.error('تم تسجيل الخروج');
+      } else {
+        this.toastr.error('you are logged out');
+      }
     })
   }
 
@@ -202,7 +222,11 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
     let formValue = this.registerForm.value;
 
     this._auth.register(formValue.userName, formValue.email, formValue.password).subscribe(res => {
-      this.toastr.success('has been registerd', formValue.email);
+      if (this.translate.currentLang == 'ar') {
+        this.toastr.success('تم تسجيلك بنجاح!', formValue.email);
+      } else {
+        this.toastr.success('has been registerd', formValue.email);
+      }
       this.$('.popup').classList.remove('activePopup');
       this._auth.setToken(res.access_token, res.role);
       if (!this._auth.isAdmin()) {

@@ -18,6 +18,7 @@ export class InternetInterceptor implements HttpInterceptor {
     if (navigator.onLine) {
       return next.handle(request);
     } else {
+      console.log('es')
       let errMessage = 'please check your internet connection';
       this.dialog.open(DialogComponent, { data: errMessage });
       return next.handle(request);

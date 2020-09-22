@@ -1,31 +1,33 @@
-<div class="my-orders">
+<div class="my-orders" #myOrders>
   <div class="container">
     <nav aria-label="breadcrumb" class="main-bread-crumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">My-Orders</li>
+        <li class="breadcrumb-item"><a routerLink="/">{{ 'orderTracking.breadCrumbBefore1' | translate }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ 'orderTracking.breadCrumbActive' | translate }}</li>
       </ol>
     </nav>
-    <div class="alert" *ngIf="orders?.length == 0 && confirmed?.length == 0">there is no orders</div>
+    <div class="alert" *ngIf="orders?.length == 0 && confirmed?.length == 0">
+      {{ 'orderTracking.noOrders' | translate }}
+    </div>
     <mat-tab-group>
-      <mat-tab label="new orders" *ngIf="orders?.length !== 0">
+      <mat-tab label="{{ 'orderTracking.labels.newOrders' | translate }}" *ngIf="orders?.length !== 0">
         <ng-container>
           <div class="tracking" *ngFor="let track of orders; index as i">
             <ul class="deleviry-info">
               <li>
-                <h4>tracking</h4>
+                <h4>{{ 'orderTracking.tracking.orderNumber' | translate }}</h4>
                 <span>#{{ track.seq }}</span>
               </li>
               <li>
-                <h4>Shipping By</h4>
+                <h4>{{ 'orderTracking.tracking.shippingBy' | translate }}</h4>
                 <span>{{ track.clientName }} | <i class="fas fa-phone-alt"></i> {{ track.mobile }}</span>
               </li>
               <li>
-                <h4>Status</h4>
+                <h4>{{ 'orderTracking.tracking.status' | translate }}</h4>
                 <span>{{ track.status }}</span>
               </li>
               <li>
-                <h4>Estimated Delivery time</h4>
+                <h4>{{ 'orderTracking.tracking.deliveryTime' | translate }}</h4>
                 <span>between 10am to 10pm</span>
               </li>
             </ul>
@@ -35,25 +37,25 @@
                   <div class="icon">
                     <i class="fas fa-box"></i>
                   </div>
-                  <span>pending</span>
+                  <span>{{ 'orderTracking.tracking.statuses.pending' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-truck-loading"></i>
                   </div>
-                  <span>processing</span>
+                  <span>{{ 'orderTracking.tracking.statuses.processing' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-truck-moving"></i>
                   </div>
-                  <span>shipped</span>
+                  <span>{{ 'orderTracking.tracking.statuses.shipped' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-check"></i>
                   </div>
-                  <span>delivered</span>
+                  <span>{{ 'orderTracking.tracking.statuses.delivered' | translate }}</span>
                 </li>
               </ul>
             </div>
@@ -63,9 +65,11 @@
                   <div class="image">
                     <img [src]="url +'/' + order.image">
                   </div>
-                  <div class="content">
-                    <h2>{{ order.name }}</h2>
-                    <span>{{ order.amount }} x {{ order.priceAfterDiscount | currency }}</span>
+                  <div class="content dir-ltr">
+                    <h2 *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined">{{ order.name }}
+                    </h2>
+                    <h2 *ngIf="translate.currentLang == 'ar'">{{ order.nameAr }}</h2>
+                    <span>{{ order.amount }} x {{ order.priceAfterDiscount | currency:'EGP' }}</span>
                   </div>
                 </li>
               </ul>
@@ -366,16 +370,16 @@
           </div>
         </ng-container>
       </mat-tab>
-      <mat-tab label="completed orders" *ngIf="confirmed?.length !== 0">
+      <mat-tab label="{{ 'orderTracking.labels.completedOrders' | translate }}" *ngIf="confirmed?.length !== 0">
         <ng-container>
           <div class="tracking" *ngFor="let track of confirmed; index as i">
             <ul class="deleviry-info">
               <li>
-                <h4>tracking</h4>
+                <h4>{{ 'orderTracking.tracking.orderNumber' | translate }}</h4>
                 <span>#{{ track.seq }}</span>
               </li>
               <li>
-                <h4>Status</h4>
+                <h4>{{ 'orderTracking.tracking.status' | translate }}</h4>
                 <span>{{ track.status }}</span>
               </li>
               <li>
@@ -388,25 +392,25 @@
                   <div class="icon">
                     <i class="fas fa-box"></i>
                   </div>
-                  <span>pending</span>
+                  <span>{{ 'orderTracking.tracking.statuses.pending' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-truck-loading"></i>
                   </div>
-                  <span>processing</span>
+                  <span>{{ 'orderTracking.tracking.statuses.processing' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-truck-moving"></i>
                   </div>
-                  <span>shipped</span>
+                  <span>{{ 'orderTracking.tracking.statuses.shipped' | translate }}</span>
                 </li>
                 <li>
                   <div class="icon">
                     <i class="fas fa-check"></i>
                   </div>
-                  <span>delivered</span>
+                  <span>{{ 'orderTracking.tracking.statuses.delivered' | translate }}</span>
                 </li>
               </ul>
             </div>
@@ -416,8 +420,10 @@
                   <div class="image">
                     <img [src]="url +'/' + order.image">
                   </div>
-                  <div class="content">
-                    <h2>{{ order.name }}</h2>
+                  <div class="content dir-ltr">
+                    <h2 *ngIf="translate.currentLang == 'er' || translate.currentLang == undefined">{{ order.name }}
+                    </h2>
+                    <h2 *ngIf="translate.currentLang == 'ar'">{{ order.nameAr }}</h2>
                     <span>{{ order.amount }} x {{ order.priceAfterDiscount | currency }}</span>
                   </div>
                 </li>
