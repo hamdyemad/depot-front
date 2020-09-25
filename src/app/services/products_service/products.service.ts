@@ -24,6 +24,10 @@ export class ProductsService {
     return this.http.get<any>(`${DB_URL}/products/categorys`)
   }
 
+  addNewCategory(body) {
+    return this.http.post<any>(`${DB_URL}/products/categorys`, body).pipe(tap(() => this.subject.next()))
+  }
+
   getAllProducts() {
     return this.http.get<any>(`${DB_URL}/products`, { observe: 'events' })
   }

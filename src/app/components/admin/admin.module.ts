@@ -17,6 +17,9 @@ import { GenerateInfoComponent } from './orders/generate-info/generate-info.comp
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
 
+import { ChartsModule } from 'ng2-charts';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+
 @NgModule({
   declarations: [AdminComponent,
     DashboardComponent,
@@ -27,7 +30,8 @@ import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
     InvoiceComponent,
     ChangeStatusOfOrdersComponent,
     ShippingComponent,
-    GenerateInfoComponent
+    GenerateInfoComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,8 @@ import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    NgxShimmerLoadingModule
+    NgxShimmerLoadingModule,
+    ChartsModule
   ]
 })
 export class AdminModule { }

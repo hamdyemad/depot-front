@@ -113,6 +113,11 @@
     "breadCrumbBefore2": "cart",
     "breadCrumbActive": "orders",
     "headingOrders": "order details",
+    "navigators": {
+      "informaion": "Fill out your information",
+      "verify": "Verify number",
+      "payment": "Choose your payment method"
+    },
     "form": {
       "name": "name",
       "address": "address",
@@ -127,11 +132,27 @@
         "cityRequired": "city is required"
       }
     },
+    "payments": {
+      "paymentWithCart": "Pay using the bank card",
+      "paymentOnDeliveryed": "Pay Cash",
+      "cardPayment": {
+        "card": "cart number",
+        "expire": "Expiration date",
+        "month": "month",
+        "year": "year",
+        "code": "code",
+        "confirmOrder": "confirm order"
+      },
+      "noCardPayment": "Pay cash on delivery",
+      "underWork": "under work"
+    },
     "goToCartLink": "go to cart",
     "confirmOrderBtn": "confirm order",
     "orders": {
       "shipping": "shipping",
-      "total": "total"
+      "total": "total",
+      "shippingTo": "Shipping to",
+      "editShipping": "Edit"
     },
     "noCarts": "there is no carts to order"
   },

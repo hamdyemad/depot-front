@@ -16,6 +16,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { MaterialModule } from '../../material.module';
 import { TranslateModule } from '@ngx-translate/core';
 
+
 @NgModule({
   declarations: [
     NavbarComponent,

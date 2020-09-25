@@ -68,9 +68,7 @@
               'is-invalid': category().invalid && category().dirty
             }" formControlName="category">
               <option value=""></option>
-              <option value="arts">arts</option>
-              <option value="chairs">chairs</option>
-              <option value="chandeliers">chandeliers</option>
+              <option [value]="category" *ngFor="let category of categorys">{{category}}</option>
             </select>
             <div class="valid-feedback err">Looks good!</div>
             <div class="invalid-feedback err">
@@ -86,9 +84,7 @@
               'is-invalid': categoryAr().invalid && categoryAr().dirty
             }" formControlName="categoryAr">
               <option value=""></option>
-              <option value="الفنون">الفنون</option>
-              <option value="الكراسي">الكراسي</option>
-              <option value="المطابخ">المطابخ</option>
+              <option [value]="category" *ngFor="let category of categorysAr">{{category}}</option>
             </select>
             <div class="valid-feedback err">Looks good!</div>
             <div class="invalid-feedback err">
@@ -97,6 +93,53 @@
           </div>
         </div>
         <!--End Product Category-->
+        <!--Start New Category-->
+        <div class="col">
+          <div class="form-group new-category">
+            <div class="main">
+              <div class="heading" (click)="toggleCategoryForm(categoryFormRef)">
+                <span>add new categorys</span>
+                <i class="fas fa-plus"></i>
+              </div>
+              <div class="category-form" #categoryFormRef>
+                <form [formGroup]="categoryForm" (ngSubmit)="addCategory(categoryFormRef)">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="new categorys">Add new Category in English</label>
+                        <input type="text" class="form-control" [ngClass]="{
+                          'is-valid': !newCategory().invalid && newCategory().dirty,
+                          'is-invalid': newCategory().invalid && newCategory().dirty
+                        }" formControlName="newCategory">
+                        <div class="valid-feedback err">Looks good!</div>
+                        <div class="invalid-feedback err">
+                          you should write category in english only
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label for="new categorys">Add new Category in Arabic</label>
+                        <input type="text" class="form-control" [ngClass]="{
+                          'is-valid': !newCategoryAr().invalid && newCategoryAr().dirty,
+                          'is-invalid': newCategoryAr().invalid && newCategoryAr().dirty
+                        }" formControlName="newCategoryAr">
+                        <div class="valid-feedback err">Looks good!</div>
+                        <div class="invalid-feedback err">
+                          you should write category in arabic only
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button [disabled]="categoryForm.invalid">Add Category</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End New Category-->
       </div>
       <div class="form-group">
         <label for="price">Product Price</label>

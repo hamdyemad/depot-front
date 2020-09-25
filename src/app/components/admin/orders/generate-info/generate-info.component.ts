@@ -21,10 +21,6 @@ export class GenerateInfoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe(res => {
-      console.log(res);
-    })
-
     //fire make status form
     this.makeSeqForm();
   }
@@ -53,10 +49,10 @@ export class GenerateInfoComponent implements OnInit {
       } else {
         const data = res.map(row => ({
           clientName: row.clientName,
-          address: row.address,
           city: row.city,
+          address: row.address,
           mobile: row.mobile
-        }))
+        }));
         const csvData = this.objectToCsv(data);
         this.downloadCsv(csvData);
         this.csvRows = [];
@@ -73,20 +69,16 @@ export class GenerateInfoComponent implements OnInit {
 
   objectToCsv(data) {
     // get the headers first
-    const headers = Object.keys(data[0])
+    const headers = Object.keys(data[0]);
     this.csvRows.push(headers.join(','));
-
     for (let row of data) {
-      console.log(row);
       let values = headers.map(header => {
-        let escaped = ('' + row[header]).replace(/"/g, '\\"')
+        let escaped = ('' + row[header]).replace(/"/g, '\\"');
         return `"${escaped}"`
       }).join(',');
       this.csvRows.push(values);
-
     }
     return this.csvRows.join('\n');
-
 
   }
   downloadCsv(csvRows) {

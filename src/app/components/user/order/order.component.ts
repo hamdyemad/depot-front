@@ -18,9 +18,12 @@ export class OrderComponent implements OnInit {
 
   @ViewChild('order', { static: true }) order: ElementRef;
   carts: Carts[];
+  x = '1'
   totalPrice: number;
   orderForm: FormGroup;
   url = env.DB_URL;
+  isLinear = true;
+  orderInformation;
   constructor(
     private fb: FormBuilder, private _cart: CartService,
     private _order: OrderService,
@@ -50,6 +53,7 @@ export class OrderComponent implements OnInit {
       comment: ['']
     });
   }
+
 
   getAllCarts() {
     this._cart.getAllCarts().subscribe((res: Carts[]) => {
@@ -83,24 +87,31 @@ export class OrderComponent implements OnInit {
   }
 
 
-  onOrder() {
+  onOrder(paymentStep) {
     let formValue = this.orderForm.value;
     console.log(this.carts);
     console.log(formValue);
     if (this.orderForm.valid) {
-      this._order.addOrder(this.carts, formValue).subscribe((res) => {
-        console.log(res);
-        this._cart.removeAllCart().subscribe((res) => {
-          console.log(res);
-          if (this.translate.currentLang == 'ar') {
-            this.toastr.success('لقد تم تنفيذ طلبك', formValue.clientName)
-          } else {
-            this.toastr.success('your order has been confirmed', formValue.clientName)
-          }
-          this.router.navigate(['/']);
-        })
-      });
+      paymentStep.select();
+      this.orderInformation = formValue;
     }
   }
+
+  confirmOrderWithNoCard() {
+    this._order.addOrder(this.carts, this.orderInformation).subscribe((res) => {
+      console.log(res);
+      this._cart.removeAllCart().subscribe((res) => {
+        console.log(res);
+        if (this.translate.currentLang == 'ar') {
+          this.toastr.success('لقد تم تنفيذ طلبك', this.orderInformation.clientName)
+        } else {
+          this.toastr.success('your order has been confirmed', this.orderInformation.clientName)
+        }
+        this.router.navigate(['/']);
+      })
+    });
+  }
+
+
 
 }

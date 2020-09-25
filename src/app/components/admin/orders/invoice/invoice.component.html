@@ -69,14 +69,14 @@
               <td>{{ product.category }}</td>
               <td class="text-right">{{ product.amount }}</td>
               <td class="text-right">{{ (product.discount / 100 |percent) }}</td>
-              <td class="text-right">{{ (product.priceAfterDiscount * product.amount) | currency }}</td>
+              <td class="text-right">{{ (product.priceAfterDiscount * product.amount) | currency:'EGP' }}</td>
             </tr>
             <tr>
               <td></td>
               <td></td>
               <td></td>
               <td class="text-right">Total Price</td>
-              <td class="text-right">{{ totalPrice | currency }}</td>
+              <td class="text-right">{{ totalPrice | currency:'EGP' }}</td>
             </tr>
           </tbody>
         </table>

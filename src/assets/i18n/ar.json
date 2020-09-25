@@ -113,6 +113,11 @@
     "breadCrumbBefore2": "السلة",
     "breadCrumbActive": "الطلبات",
     "headingOrders": "معلومات الطلب",
+    "navigators": {
+      "informaion": "املأ بياناتك",
+      "verify": "التحقق من الرقم",
+      "payment": "أختر وسيلة الدفع"
+    },
     "form": {
       "name": "الأسم",
       "address": "العنوان",
@@ -127,11 +132,27 @@
         "cityRequired": "المدينة مطلوب"
       }
     },
+    "payments": {
+      "paymentWithCart": "الدفع بواسطة كارت البنك",
+      "paymentOnDeliveryed": "الدفع نقدا",
+      "cardPayment": {
+        "card": "رقم الكارت",
+        "expire": "تاريخ انتهاء الصلاحية",
+        "month": "شهر",
+        "year": "سنة",
+        "code": "الكود",
+        "confirmOrder": "اكمل عملية الشراء"
+      },
+      "noCardPayment": "الدفع عند الأستلام",
+      "underWork": "تحت الأنشاء"
+    },
     "goToCartLink": "اذهب للسلة",
     "confirmOrderBtn": "تأكيد الطلب",
     "orders": {
       "shipping": "الشحن",
-      "total": "المجموع"
+      "total": "المجموع",
+      "shippingTo": "الشحن الى",
+      "editShipping": "تعديل"
     },
     "noCarts": "لا يوجد منجات في السلة لأكمال الطلب"
   },

@@ -11,55 +11,121 @@
               <li class="breadcrumb-item active" aria-current="page">{{ 'order.breadCrumbActive' | translate }}</li>
             </ol>
           </nav>
-          <form [formGroup]="orderForm" (ngSubmit)="onOrder()">
-            <h2 class="heading">{{ 'order.headingOrders' | translate }}</h2>
-            <div class="form-group">
-              <label for="name">{{ 'order.form.name' | translate }}</label>
-              <input type="text" class="form-control" formControlName="clientName">
-              <div class="err" *ngIf="clientName().errors?.required && clientName().dirty">
-                {{ 'order.form.validation.clientNameRequired' | translate }}
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step #orderInformationStep [stepControl]="orderForm">
+              <form [formGroup]="orderForm" (ngSubmit)="onOrder(paymentStep);">
+                <ng-template matStepLabel>{{ 'order.navigators.informaion'| translate }}</ng-template>
+                <h2 class="heading">{{ 'order.headingOrders' | translate }}</h2>
+                <div class="form-group">
+                  <label for="name">{{ 'order.form.name' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="clientName">
+                  <div class="err" *ngIf="clientName().errors?.required && clientName().dirty">
+                    {{ 'order.form.validation.clientNameRequired' | translate }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="address">{{ 'order.form.address' | translate }}</label>
+                  <input type="text" class="form-control" formControlName="address">
+                  <div class="err" *ngIf="address().errors?.required && address().dirty">
+                    {{ 'order.form.validation.addressRequired' | translate }}
+                  </div>
+                </div>
+                <div class="form-group mobile">
+                  <label for="mobile">{{ 'order.form.mobile' | translate }}</label>
+                  <div class="input-information">
+                    <input type="text" class="form-control" formControlName="mobile" maxlength="10">
+                    <div class="flag">
+                      <img src="../../../../assets/images/orders/flag.jpg">
+                      <span>(+20)</span>
+                    </div>
+                  </div>
+                  <div class="err" *ngIf="mobile().errors?.required && mobile().dirty">
+                    {{ 'order.form.validation.mobileRequired' | translate }}
+                  </div>
+                  <div class="err" *ngIf="mobile().errors?.pattern && mobile().dirty">
+                    {{ 'order.form.validation.numberFormat' | translate }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="city">{{ 'order.form.city' | translate }}</label>
+                  <select class="custom-select" formControlName="city">
+                    <option value=""></option>
+                    <option value="cairo">cairo</option>
+                    <option value="alex">alex</option>
+                  </select>
+                  <div class="err" *ngIf="city().errors?.required && city().dirty">
+                    {{ 'order.form.validation.cityRequired' | translate }}
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="comment">{{ 'order.form.comment' | translate }}</label>
+                  <textarea class="form-control" formControlName="comment"></textarea>
+                </div>
+                <div class="form-group about-confirm">
+                  <input type="submit" value="{{ 'order.confirmOrderBtn' | translate }}">
+                  <a routerLink="/cart">
+                    <i class="fas fa-angle-left"></i>
+                    <span>{{ 'order.goToCartLink' | translate }}</span>
+                  </a>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step #paymentStep>
+              <div class="payments">
+                <mat-tab-group>
+                  <mat-tab label="{{ 'order.payments.paymentOnDeliveryed'| translate }}">
+                    <div class="alert">{{ 'order.payments.noCardPayment'| translate }}</div>
+                    <button
+                      (click)="confirmOrderWithNoCard()">{{ 'order.payments.cardPayment.confirmOrder'| translate }}</button>
+                  </mat-tab>
+                  <mat-tab label="{{ 'order.payments.paymentWithCart'| translate }}">
+                    <div class="alert">{{ 'order.payments.underWork'| translate }}!</div>
+                    <!-- <div class="payment-with-card">
+                      <form>
+                        <div class="form-group">
+                          <label>{{ 'order.payments.cardPayment.card'| translate }}</label>
+                          <input class="form-control" type="number" placeholder="**** **** **** ****" pattern="\d*">
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label>{{ 'order.payments.cardPayment.expire'| translate }}</label>
+                              <div class="inputs">
+                                <input type="number" class="form-control"
+                                  placeholder="{{ 'order.payments.cardPayment.month'| translate }}" max="2">
+                                <input class="form-control" disabled type="text" placeholder="/">
+                                <input type="number" class="form-control"
+                                  placeholder="{{ 'order.payments.cardPayment.year'| translate }}" max="2">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              <label for="رقم الكارت">CVV</label>
+                              <div class="cvv">
+                                <input class="form-control" type="number"
+                                  placeholder="{{ 'order.payments.cardPayment.code'| translate }}">
+                                <i class="fas fa-info"></i>
+                                <div class="drop-down">
+                                  hello
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <input type="submit" class="form-control"
+                            value="{{ 'order.payments.cardPayment.confirmOrder'| translate }}">
+                        </div>
+                      </form>
+                    </div> -->
+                  </mat-tab>
+                </mat-tab-group>
+
               </div>
-            </div>
-            <div class="form-group">
-              <label for="address">{{ 'order.form.address' | translate }}</label>
-              <input type="text" class="form-control" formControlName="address">
-              <div class="err" *ngIf="address().errors?.required && address().dirty">
-                {{ 'order.form.validation.addressRequired' | translate }}
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="mobile">{{ 'order.form.mobile' | translate }}</label>
-              <input type="text" class="form-control" formControlName="mobile">
-              <div class="err" *ngIf="mobile().errors?.required && mobile().dirty">
-                {{ 'order.form.validation.mobileRequired' | translate }}
-              </div>
-              <div class="err" *ngIf="mobile().errors?.pattern && mobile().dirty">
-                {{ 'order.form.validation.numberFormat' | translate }}
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="city">{{ 'order.form.city' | translate }}</label>
-              <select class="custom-select" formControlName="city">
-                <option value=""></option>
-                <option value="cairo">cairo</option>
-                <option value="alex">alex</option>
-              </select>
-              <div class="err" *ngIf="city().errors?.required && city().dirty">
-                {{ 'order.form.validation.cityRequired' | translate }}
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="comment">{{ 'order.form.comment' | translate }}</label>
-              <textarea class="form-control" formControlName="comment"></textarea>
-            </div>
-            <div class="form-group about-confirm">
-              <a routerLink="/cart">
-                <i class="fas fa-angle-left"></i>
-                <span>{{ 'order.goToCartLink' | translate }}</span>
-              </a>
-              <input type="submit" value="{{ 'order.confirmOrderBtn' | translate }}" [disabled]="orderForm.invalid">
-            </div>
-          </form>
+              <ng-template matStepLabel>{{ 'order.navigators.payment'| translate }}</ng-template>
+            </mat-step>
+          </mat-horizontal-stepper>
         </div>
         <div class="col-12 col-lg-4">
           <div class="carts">
@@ -73,13 +139,28 @@
               <h4 class="total-cart">{{ (cart.amount * cart.priceAfterDiscount | currency:'EGP') }}</h4>
             </div>
             <div class="flex-order">
-              <h3>{{ 'order.orders.shipping' | translate }}:</h3>
+              <h3>{{ 'order.orders.shipping' | translate }}</h3>
               <h3>free</h3>
             </div>
             <div class="total-carts flex-order">
-              <h3>{{ 'order.orders.total' | translate }}:</h3>
+              <h3>{{ 'order.orders.total' | translate }}</h3>
               <h3>{{ totalPrice | currency:'EGP' }}</h3>
             </div>
+            <ng-container *ngIf="orderInformation">
+              <div class="flex-order shipping">
+                <h3>{{ 'order.orders.shippingTo' | translate }}</h3>
+                <h3 class="edit" (click)="orderInformationStep.select()">{{ 'order.orders.editShipping' | translate }}
+                </h3>
+              </div>
+
+              <div class="order-information">
+                <div class="address">
+                  {{ orderInformation.address }},
+                  {{ orderInformation.city }}
+                </div>
+                <div class="phone">{{ '+20' + orderInformation.mobile }}</div>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>

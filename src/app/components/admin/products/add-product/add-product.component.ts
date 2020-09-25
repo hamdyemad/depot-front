@@ -15,7 +15,10 @@ export class AddProductComponent implements OnInit {
   @ViewChild('img', { static: true }) img: ElementRef;
   imageEle: HTMLImageElement;
   addForm: FormGroup;
+  categoryForm: FormGroup;
   fileList: FileList;
+  categorys: string[];
+  categorysAr: string[];
   constructor(
     private fb: FormBuilder,
     private _products: ProductsService,
@@ -25,6 +28,14 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
     // Fire Making Form
     this.makeForm();
+    // Fire Makeing Category Form
+    this.makeCategoryForm();
+
+    this._products.observer.subscribe(() => {
+      this.getAllCategorys();
+    })
+    // Fire Get All Categorys
+    this.getAllCategorys();
   }
 
 
@@ -42,6 +53,23 @@ export class AddProductComponent implements OnInit {
       discount: [0, [Validators.max(100)]]
     })
   }
+
+  // Make Form Category
+  makeCategoryForm() {
+    this.categoryForm = this.fb.group({
+      newCategory: ['', [Validators.required, Validators.pattern('[a-z ]+')]],
+      newCategoryAr: ['', [Validators.required, Validators.pattern('[أ-ي ]+')]]
+    })
+  }
+  // return all inputs
+  newCategory() {
+    return this.categoryForm.controls.newCategory
+  }
+  newCategoryAr() {
+    return this.categoryForm.controls.newCategoryAr
+  }
+  // return all inputs
+
 
   // return all inputs
   name() {
@@ -84,6 +112,24 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  getAllCategorys() {
+    this._products.getAllCategorys().subscribe(res => {
+      this.categorys = res[0]._categorys
+      this.categorysAr = res[0]._categorysAr
+    })
+  }
+
+  addCategory(categoryFormRef: HTMLDivElement) {
+    let formValue = this.categoryForm.value;
+    console.log(formValue);
+    this._products.addNewCategory(formValue).subscribe(res => {
+      console.log(res);
+      this.toastr.success('your category has been added!');
+      categoryFormRef.classList.toggle('activeForm');
+      this.categoryForm.reset();
+    })
+  }
+
 
   onSubmit() {
     let formValue = this.addForm.value;
@@ -93,6 +139,11 @@ export class AddProductComponent implements OnInit {
       this.toastr.success('has been added', formValue.name);
       this.router.navigate(['/admin/products']);
     })
+  }
+
+
+  toggleCategoryForm(categoryForm: HTMLDivElement) {
+    categoryForm.classList.toggle('activeForm')
   }
 
 }

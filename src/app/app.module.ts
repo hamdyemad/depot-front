@@ -1,5 +1,4 @@
 import { LanguageInterceptor } from './interceptors/i18n/language.interceptor';
-import { InternetInterceptor } from './interceptors/internet-checking/internet.interceptor';
 import { ErrorInterceptor } from './interceptors/error/error.interceptor';
 import { AuthInterceptor } from './interceptors/authorization/auth.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -48,7 +47,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LanguageInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: InternetInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
