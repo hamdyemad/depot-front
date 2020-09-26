@@ -178,7 +178,11 @@ export class HomeComponent implements OnInit, OnDestroy {
           }
         })
     } else {
-      this.toastr.error('برجاء التسجيل أولا لأتمام عملية الأضافة');
+      if (this.translate.currentLang == 'en') {
+        this.toastr.error('please login first to add to cart')
+      } else {
+        this.toastr.error('برجاء التسجيل أولا لأتمام عملية الأضافة');
+      }
     }
   }
 
