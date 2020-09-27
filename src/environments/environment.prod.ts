@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  DB_URL: 'https://depott.netlify.app'
+  DB_URL: 'https://depoot.herokuapp.com'
 };
