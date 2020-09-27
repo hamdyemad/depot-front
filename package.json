@@ -2,9 +2,7 @@
   "name": "front-end",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
