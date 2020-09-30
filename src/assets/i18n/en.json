@@ -1,15 +1,19 @@
 {
   "navbar": {
+
     "logo": "DEPOT",
     "link1": {
       "main": "home",
-      "subLink1": "main home",
-      "subLink2": "minimal home",
-      "subLink3": "classic home"
-    },
+        "subLink1": "main home",
+        "subLink2": "minimal home",
+        "subLink3": "classic home"
+    }
+
+    ,
     "link2": "shop",
     "link3": "pages",
     "loginAndregisterLink": {
+
       "login": "login",
       "register": "register",
       "username": "username",
@@ -20,94 +24,124 @@
       "lostPassword": "lost your password?",
       "validation": {
         "usernameRequired": "username is required",
-        "emailRequired": "email is required",
-        "emailFormat": "write an email format",
-        "passwordRequired": "password is required",
-        "passwordLength": "write at least",
-        "confirmPassword": "your password doesn't match"
+          "emailRequired": "email is required",
+          "emailFormat": "write an email format",
+          "passwordRequired": "password is required",
+          "passwordLength": "write at least",
+          "confirmPassword": "your password doesn't match"
       }
-    },
+    }
+
+    ,
     "cart": {
       "cart": "cart",
-      "noCart": "there is no carts",
-      "total": "total",
-      "viewCartBtn": "view cart",
-      "checkoutBtn": "checkout"
-    },
+        "noCart": "there is no carts",
+        "total": "total",
+        "viewCartBtn": "view cart",
+        "checkoutBtn": "checkout"
+    }
+
+    ,
     "orders": "orders",
     "logout": "logout"
-  },
-  "changeTheme": "choose your favourite color :)",
+  }
+
+  ,
+  "changeTheme": "choose the color of page",
   "home": {
     "carousel": {
       "header": "contemporary design.",
-      "paragraph": "a large set of beautiful fully flexible homepage layouts lets you create your website quickly and easily"
-    },
+        "paragraph": "a large set of beautiful fully flexible homepage layouts lets you create your website quickly and easily"
+    }
+
+    ,
     "filters": {
       "category": "all",
-      "filter": "filter",
-      "sort": "sort by"
-    },
+        "filter": "filter",
+        "sort": "sort by"
+    }
+
+    ,
     "quicklook": "quick look",
     "addToCart": "add to cart",
     "noProducts": "there is no products",
     "main": "home"
-  },
+  }
+
+  ,
   "productInfo": {
     "quantity": "quantity",
-    "addToCart": "add to cart",
-    "code": "code",
-    "category": "category"
-  },
+      "addToCart": "add to cart",
+      "code": "code",
+      "category": "category"
+  }
+
+  ,
   "footer": {
     "customerService": {
       "mainContent": "customer service",
-      "help": "help & contact us",
-      "returns": "returns & refunds",
-      "terms": "Terms & Conditions"
-    },
+        "help": "help & contact us",
+        "returns": "returns & refunds",
+        "terms": "Terms & Conditions"
+    }
+
+    ,
     "company": {
       "mainContent": "company",
-      "whatWeDo": "what we do",
-      "faqs": "faqs"
-    },
+        "whatWeDo": "what we do",
+        "faqs": "faqs"
+    }
+
+    ,
     "socialMedia": {
       "mainContent": "social media",
-      "facebook": "facebook",
-      "instagram": "instagram",
-      "linkedin": "linkedin"
-    },
+        "facebook": "facebook",
+        "instagram": "instagram",
+        "linkedin": "linkedin"
+    }
+
+    ,
     "profileInfo": {
       "mainContent": "profile",
-      "account": "my account",
-      "checkout": "checkout",
-      "orderTracking": "order tracking"
+        "account": "my account",
+        "checkout": "checkout",
+        "orderTracking": "order tracking"
     }
-  },
+  }
+
+  ,
   "cart": {
+
     "cart": "cart",
     "breadCrumbBefore": "home",
     "breadCrumbActive": "cart",
     "headingCart": "shopping cart",
     "carts": {
       "image": "image",
-      "name": "name",
-      "price": "price",
-      "quantity": "quantity",
-      "total": "total",
-      "couponCode": "coupon code",
-      "couponCodeBtn": "apply coupon"
-    },
+        "name": "name",
+        "price": "price",
+        "quantity": "quantity",
+        "total": "total",
+        "couponCode": "coupon code",
+        "couponCodeBtn": "apply coupon"
+    }
+
+    ,
     "total": {
       "totalHeading": "cart totals",
-      "subTotal": "subtotal",
-      "shipping": "shipping",
-      "total": "total"
-    },
+        "subTotal": "subtotal",
+        "shipping": "shipping",
+        "total": "total"
+    }
+
+    ,
     "checkoutBtn": "proceed to checkout",
     "noCarts": "there is no carts"
-  },
+  }
+
+  ,
   "order": {
+
     "order": "orders",
     "breadCrumbBefore1": "home",
     "breadCrumbBefore2": "cart",
@@ -115,10 +149,13 @@
     "headingOrders": "order details",
     "navigators": {
       "informaion": "Fill out your information",
-      "verify": "Verify number",
-      "payment": "Choose your payment method"
-    },
+        "verify": "Verify number",
+        "payment": "Choose your payment method"
+    }
+
+    ,
     "form": {
+
       "name": "name",
       "address": "address",
       "mobile": "mobile",
@@ -126,54 +163,69 @@
       "comment": "comment",
       "validation": {
         "clientNameRequired": "name is required",
-        "addressRequired": "address is required",
-        "mobileRequired": "mobile is required",
-        "numberFormat": "write a mobile number only",
-        "cityRequired": "city is required"
+          "addressRequired": "address is required",
+          "mobileRequired": "mobile is required",
+          "numberFormat": "write a mobile number only",
+          "cityRequired": "city is required"
       }
-    },
+    }
+
+    ,
     "payments": {
+
       "paymentWithCart": "Pay using the bank card",
       "paymentOnDeliveryed": "Pay Cash",
       "cardPayment": {
         "card": "cart number",
-        "expire": "Expiration date",
-        "month": "month",
-        "year": "year",
-        "code": "code",
-        "confirmOrder": "confirm order"
-      },
+          "expire": "Expiration date",
+          "month": "month",
+          "year": "year",
+          "code": "code",
+          "confirmOrder": "confirm order"
+      }
+
+      ,
       "noCardPayment": "Pay cash on delivery",
       "underWork": "under work"
-    },
+    }
+
+    ,
     "goToCartLink": "go to cart",
     "confirmOrderBtn": "confirm order",
     "orders": {
       "shipping": "shipping",
-      "total": "total",
-      "shippingTo": "Shipping to",
-      "editShipping": "Edit"
-    },
+        "total": "total",
+        "shippingTo": "Shipping to",
+        "editShipping": "Edit"
+    }
+
+    ,
     "noCarts": "there is no carts to order"
-  },
+  }
+
+  ,
   "orderTracking": {
+
     "breadCrumbBefore1": "home",
     "breadCrumbActive": "order-tracking",
     "noOrders": "there is no orders",
     "labels": {
       "newOrders": "new orders",
-      "completedOrders": "completed orders"
-    },
+        "completedOrders": "completed orders"
+    }
+
+    ,
     "tracking": {
+
       "orderNumber": "order number",
       "shippingBy": "shipping by",
       "status": "status",
       "deliveryTime": "Estimated Delivery Time",
       "statuses": {
         "pending": "pending",
-        "processing": "processing",
-        "shipped": "shipped",
-        "delivered": "delivered"
+          "processing": "processing",
+          "shipped": "shipped",
+          "delivered": "delivered"
       }
     }
   }

@@ -40,10 +40,10 @@
       </a>
     </li>
 
-    <li>
-      <a routerLink="/users" routerLinkActive="activeLink">
+    <li *ngIf="AuthService.isSuperAdmin()">
+      <a routerLink="/admin/admins" routerLinkActive="activeLink">
         <i class="fas fa-users"></i>
-        <span>users</span>
+        <span>admins</span>
       </a>
     </li>
   </ul>

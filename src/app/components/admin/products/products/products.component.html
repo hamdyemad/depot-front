@@ -78,7 +78,7 @@
                       <i class="far fa-eye"></i>
                     </a>
                   </li>
-                  <li (click)="toggleDropDown(dropDown)">
+                  <li *ngIf="authService.isSuperAdmin()" (click)="toggleDropDown(dropDown)">
                     <a>
                       <i class="fas fa-caret-down"></i>
                       <ul class="drop-down" #dropDown>

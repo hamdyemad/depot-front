@@ -1,0 +1,73 @@
+@import "../../../../../assets/files/placeholders";
+
+.admins {
+  @extend %tableWithFilter;
+
+  form {
+    &.activeForm {
+      height: 155px !important;
+    }
+  }
+
+  .status {
+    text-transform: uppercase;
+    position: relative;
+
+    .status-heading,
+    .status-body {
+      padding: 5px;
+      width: 50%;
+      background-color: var(--mainColor);
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .status-heading {
+      position: relative;
+
+      i {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        color: #fff;
+        transform: translateY(-50%);
+      }
+    }
+
+    .status-body {
+      position: absolute;
+      left: 0;
+      top: 120%;
+      z-index: 1;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      opacity: 0;
+      transition: all 0.3s ease-in-out;
+
+      &.activeStatus {
+        opacity: 1;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+
+      li {
+        transition: all 0.2s ease-in-out;
+        padding: 5px;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: var(--secColor);
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  pagination-template {
+    @extend %pagination;
+  }
+
+  .shimmers {
+    @extend %shimmers;
+  }
+}

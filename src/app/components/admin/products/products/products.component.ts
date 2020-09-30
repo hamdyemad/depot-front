@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../services/auth_service/auth.service';
 import { ProductsService } from './../../../../services/products_service/products.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -35,7 +36,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private _products: ProductsService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    public authService: AuthService) { }
 
   ngOnInit(): void {
     this.getAllCategorys();

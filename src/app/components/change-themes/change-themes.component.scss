@@ -10,12 +10,20 @@
   transform: translateX(100%);
   transition: all 0.5s ease-in-out;
   z-index: 2;
+
+  @media(max-width: 767px) {
+    width: 150px;
+    padding: 8px;
+  }
+
   @media print {
     display: none;
   }
+
   &.activeBox {
     transform: translateX(0);
   }
+
   i {
     position: absolute;
     background: #fff;
@@ -29,13 +37,25 @@
     border-bottom-left-radius: 5px;
     box-shadow: 0px 0px 11px 2px #e6e6e6;
     line-height: 25px;
+
+    @media (max-width: 767px) {
+      width: 25px;
+      left: -25px;
+    }
   }
+
   .box {
     text-align: center;
-    h5 {
+
+    h4 {
       margin-bottom: 5px;
       text-transform: capitalize;
+
+      @media(max-width: 767px) {
+        font-size: 13px;
+      }
     }
+
     ul {
       li {
         display: inline-block;
@@ -45,15 +65,17 @@
         border-radius: 50%;
         transition: all 0.3s ease-in-out;
         margin: 0px 5px;
-        @each $var, $color,
-          $secColor in (first-child, var(--blue), var(--secBlue)),
-          (nth-child(2), var(--red), var(--secRed)),
-          (nth-child(3), var(--purple), var(--secPurple)),
-          (nth-child(4), var(--orange), var(--secOrange)),
-          (nth-child(5), var(--dark), var(--secDark))
-        {
+
+        @each $var,
+        $color,
+        $secColor in (first-child, var(--blue), var(--secBlue)),
+        (nth-child(2), var(--red), var(--secRed)),
+        (nth-child(3), var(--purple), var(--secPurple)),
+        (nth-child(4), var(--orange), var(--secOrange)),
+        (nth-child(5), var(--dark), var(--secDark)) {
           &:#{$var} {
             background-color: $color;
+
             &:hover {
               background-color: $secColor;
             }

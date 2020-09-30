@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     console.log(this._auth.isAdmin())
-    if (this._auth.isAdmin()) {
+    if (this._auth.isAdmin() || this._auth.isSuperAdmin()) {
       return true;
     } else {
       this.router.navigate(['/']);

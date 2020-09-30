@@ -194,7 +194,7 @@
 
               @media (max-width: 767px) {
                 width: 200px;
-                height: 250px;
+                height: 200px;
               }
             }
           }
@@ -391,6 +391,7 @@
 
         .img-info {
           position: relative;
+          cursor: pointer;
 
           img {
             width: 100%;

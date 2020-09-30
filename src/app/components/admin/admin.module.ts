@@ -19,6 +19,7 @@ import { NgxShimmerLoadingModule } from 'ngx-shimmer-loading';
 
 import { ChartsModule } from 'ng2-charts';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { AdminsComponent } from './admins/admins/admins.component';
 
 @NgModule({
   declarations: [AdminComponent,
@@ -31,7 +32,8 @@ import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
     ChangeStatusOfOrdersComponent,
     ShippingComponent,
     GenerateInfoComponent,
-    PieChartComponent
+    PieChartComponent,
+    AdminsComponent
   ],
   imports: [
     CommonModule,

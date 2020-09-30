@@ -3,9 +3,9 @@
     <div class="links" #sideBar>
       <i class="fas fa-times" (click)="toggleSideBar(sideBar)"></i>
       <ul class="sideBarLinks">
-        <li routerLink="/">
+        <li class="activeLink" routerLink="/" routerLinkActive="activeLink">
           <a>{{ 'navbar.link1.main' | translate }}</a>
-          <div class="drop-down">
+          <!-- <div class="drop-down">
             <ul>
               <li><i class="fas fa-long-arrow-alt-right"></i><a href="">{{ 'navbar.link1.subLink1' | translate }}</a>
               </li>
@@ -14,13 +14,13 @@
               <li><i class="fas fa-long-arrow-alt-right"></i><a href="">{{ 'navbar.link1.subLink2' | translate }}</a>
               </li>
             </ul>
-          </div>
+          </div> -->
         </li>
-        <li><a>{{ 'navbar.link2' | translate }}</a></li>
-        <li><a href="">{{ 'navbar.link3' | translate }}</a></li>
+        <li routerLink="/" routerLinkActive="activeLink"><a>{{ 'navbar.link2' | translate }}</a></li>
+        <li routerLink="/" routerLinkActive="activeLink"><a>{{ 'navbar.link3' | translate }}</a></li>
       </ul>
     </div>
-    <div class="logo">
+    <div class="logo" routerLink="/">
       <h1>{{ 'navbar.logo' | translate }}</h1>
     </div>
     <div class="links">

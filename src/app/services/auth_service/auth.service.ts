@@ -25,14 +25,28 @@ export class AuthService {
     return this.http.post<any>(`${DB_URL}/login`, { email, password });
   }
 
+
+  getUserInfo() {
+    return this.http.get<any>(`${DB_URL}/user`);
+  }
+
   setToken(token: string, role: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     let role = localStorage.getItem('role');
     if (role == 'admin') {
+      return true
+    } else {
+      return false
+    }
+  }
+
+  isSuperAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    if (role == 'super-admin') {
       return true
     } else {
       return false

@@ -120,7 +120,6 @@ header {
                 .no-cart {
                   width: 200px;
                   padding: 20px;
-                  color: var(--secColor);
                 }
               }
 
@@ -137,6 +136,12 @@ header {
           position: relative;
           display: inline-block;
           padding: 10px;
+
+          &.activeLink {
+            a {
+              color: var(--secColor) !important;
+            }
+          }
 
           @media (max-width: 991px) {
             padding: 5px;
@@ -274,7 +279,7 @@ header {
             .no-cart {
               width: 200px;
               padding: 20px;
-              color: var(--secColor);
+              color: #fff;
             }
 
             .cart {
@@ -372,12 +377,18 @@ header {
     }
 
     .logo {
+      cursor: pointer;
+
       @media (max-width: 991px) {
         order: -1;
       }
 
       h1 {
         margin: 0;
+
+        @media(max-width: 767px) {
+          font-size: 18px;
+        }
       }
     }
   }

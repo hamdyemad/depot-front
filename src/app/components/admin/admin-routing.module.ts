@@ -1,3 +1,4 @@
+import { AdminsComponent } from './admins/admins/admins.component';
 import { GenerateInfoComponent } from './orders/generate-info/generate-info.component';
 import { ShippingComponent } from './orders/shipping/shipping.component';
 import { ChangeStatusOfOrdersComponent } from './orders/change-status-of-orders/change-status-of-orders.component';
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: "order/:id", component: OrderDetailsComponent },
       { path: "order/invoice/:id", component: InvoiceComponent },
       { path: "change-status", component: ChangeStatusOfOrdersComponent },
-      { path: "products", loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) }
+      { path: "products", loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+      { path: "admins", component: AdminsComponent }
     ]
   },
 ];

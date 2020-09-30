@@ -77,7 +77,8 @@
           <div class="col-12 col-sm-6 col-md-4 col-lg-3"
             *ngFor="let product of products | paginate: {itemsPerPage: 10, currentPage: p}; index as i">
             <div class="product-info">
-              <div class="img-info">
+              <div class="img-info" *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined"
+                [routerLink]="['product/', product._id, product.name]">
                 <img [src]="url +'/' + product.image" [alt]="product.name">
                 <div class="overlay">
                   <div class="status">
@@ -85,10 +86,20 @@
                       {{ (product.discount / 100 | percent) }}</span>
                   </div>
                   <div class="quick-look">
-                    <a *ngIf="translate.currentLang == 'en' || translate.currentLang == undefined"
-                      [routerLink]="['product/', product._id, product.name]"><span>{{ 'home.quicklook' | translate }}</span></a>
-                    <a *ngIf="translate.currentLang == 'ar'"
-                      [routerLink]="['product/', product._id, product.nameAr]"><span>{{ 'home.quicklook' | translate }}</span></a>
+                    <a><span>{{ 'home.quicklook' | translate }}</span></a>
+                  </div>
+                </div>
+              </div>
+              <div class="img-info" *ngIf="translate.currentLang == 'ar'"
+                [routerLink]="['product/', product._id, product.nameAr]">
+                <img [src]="url +'/' + product.image" [alt]="product.nameAr">
+                <div class="overlay">
+                  <div class="status">
+                    <span class="discount" *ngIf="product.price !== product.priceAfterDiscount">-
+                      {{ (product.discount / 100 | percent) }}</span>
+                  </div>
+                  <div class="quick-look">
+                    <a><span>{{ 'home.quicklook' | translate }}</span></a>
                   </div>
                 </div>
               </div>

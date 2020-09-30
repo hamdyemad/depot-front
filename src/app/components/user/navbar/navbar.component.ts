@@ -171,13 +171,13 @@ export class NavbarComponent implements OnInit, OnDestroy, AfterViewInit {
         } else {
           this.toastr.success('has logged in', formValue.email);
         }
-        if (res.role == 'admin') {
+        if (res.role == 'admin' || res.role == 'super-admin') {
           this.router.navigate(['/admin'])
         }
         this.$('.popup').classList.remove('activePopup');
-        if (!this._auth.isAdmin()) {
-          this.getAllCarts();
-        }
+        // if (!this._auth.isAdmin() || !this._auth.isSuperAdmin()) {
+        //   this.getAllCarts();
+        // }
       } else {
         this.emailMessage = res.emailMessage;
         this.passwordMessage = res.passwordMessage;
