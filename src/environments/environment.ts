@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  DB_URL: 'http://localhost:3000'
-  // DB_URL: 'https://depoot.herokuapp.com'
+  // DB_URL: 'http://localhost:3000'
+  DB_URL: 'https://depoot.herokuapp.com'
 };
 
 /*
